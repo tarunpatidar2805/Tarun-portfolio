@@ -49,8 +49,10 @@
 <!-- ========== Start Section Header ========== -->
 <!-- ========== Start Section Header ========== -->
 <!-- Mobile Toggle Button -->
+<!-- Mobile Toggle Button -->
 <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
 
+<!-- Sidebar -->
 <header id="header" style="width: 200px;"> <!-- Slim Sidebar -->
   <div class="d-flex flex-column text-center">
 
@@ -88,9 +90,11 @@
 
   </div>
 </header>
-<!-- ========== End Section Header ========== -->
 
-<!-- Smooth Scroll JS -->
+<!-- Background Overlay -->
+<div id="overlay"></div>
+
+<!-- ========== JS ========== -->
 <script>
   // Smooth Scroll
   document.querySelectorAll('.scrollto').forEach(link => {
@@ -105,19 +109,28 @@
       }
       // Close sidebar on mobile after click
       document.getElementById('header').classList.remove('open');
+      document.getElementById('overlay').classList.remove('active');
     });
   });
 
   // Sidebar Toggle
   const toggleBtn = document.querySelector('.mobile-nav-toggle');
   const sidebar = document.getElementById('header');
+  const overlay = document.getElementById('overlay');
 
   toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  });
+
+  // Close when clicking outside
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
   });
 </script>
 
-<!-- CSS for Slim Sidebar -->
+<!-- ========== CSS ========== -->
 <style>
 /* Sidebar Base */
 #header {
@@ -188,6 +201,21 @@
   color: #fff;
 }
 
+/* Overlay for Mobile */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 998;
+}
+#overlay.active {
+  display: block;
+}
+
 /* Mobile Sidebar Hidden by Default */
 @media (max-width: 991px) {
   #header {
@@ -205,7 +233,7 @@
     background: #007bff;
     border-radius: 6px;
     padding: 6px 10px;
-    z-index: 1000;
+    z-index: 1001;
     cursor: pointer;
   }
 }
