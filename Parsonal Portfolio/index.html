@@ -53,7 +53,7 @@
 <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
 
 <!-- Sidebar -->
-<header id="header" style="width: 200px;"> <!-- Slim Sidebar -->
+<header id="header"> <!-- Slim Sidebar -->
   <div class="d-flex flex-column text-center">
 
     <!-- Profile -->
@@ -96,28 +96,11 @@
 
 <!-- ========== JS ========== -->
 <script>
-  // Smooth Scroll
-  document.querySelectorAll('.scrollto').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 20,
-          behavior: 'smooth'
-        });
-      }
-      // Close sidebar on mobile after click
-      document.getElementById('header').classList.remove('open');
-      document.getElementById('overlay').classList.remove('active');
-    });
-  });
-
-  // Sidebar Toggle
   const toggleBtn = document.querySelector('.mobile-nav-toggle');
   const sidebar = document.getElementById('header');
   const overlay = document.getElementById('overlay');
 
+  // Sidebar Toggle
   toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
     overlay.classList.toggle('active');
@@ -127,6 +110,14 @@
   overlay.addEventListener('click', () => {
     sidebar.classList.remove('open');
     overlay.classList.remove('active');
+  });
+
+  // Close sidebar on link click
+  document.querySelectorAll('.scrollto').forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
   });
 </script>
 
@@ -141,23 +132,62 @@
   height: 100vh;
   width: 200px;
   overflow-y: auto;
-  transition: all 0.3s ease;
   z-index: 999;
   padding-bottom: 20px;
+  transition: transform 0.4s ease; /* Smooth slice */
 }
 
-/* Profile Image - Circular */
+/* Sidebar Hidden (Mobile) */
+@media (max-width: 991px) {
+  #header {
+    transform: translateX(-220px); /* hide */
+  }
+  #header.open {
+    transform: translateX(0); /* show */
+  }
+  .mobile-nav-toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    color: #fff;
+    background: #007bff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    z-index: 1001;
+    cursor: pointer;
+  }
+}
+
+/* Overlay for Mobile */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 998;
+}
+#overlay.active {
+  display: block;
+}
+
+/* Profile Image - Circular + Bounce */
 .profile-img {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid #fff;
   box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  transition: all 0.3s ease;
+  animation: bounceProfile 2s infinite;
 }
-.profile-img:hover {
-  transform: scale(1.1) rotate(3deg);
+@keyframes bounceProfile {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
 }
 
 /* Social Icons */
@@ -187,7 +217,6 @@
 #header .nav-menu a {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 6px;
   color: #fff;
   font-size: 14px;
@@ -199,43 +228,6 @@
 #header .nav-menu a.active {
   background: #007bff;
   color: #fff;
-}
-
-/* Overlay for Mobile */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  z-index: 998;
-}
-#overlay.active {
-  display: block;
-}
-
-/* Mobile Sidebar Hidden by Default */
-@media (max-width: 991px) {
-  #header {
-    left: -220px;
-  }
-  #header.open {
-    left: 0;
-  }
-  .mobile-nav-toggle {
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    font-size: 28px;
-    color: #fff;
-    background: #007bff;
-    border-radius: 6px;
-    padding: 6px 10px;
-    z-index: 1001;
-    cursor: pointer;
-  }
 }
 </style>
 
@@ -271,8 +263,6 @@
 
 <!-- About Section -->
 
-
-<!-- About Section -->
 <section id="about" class="about py-5">
   <div class="container">
 
@@ -287,32 +277,31 @@
       </p>
     </div>
 
-    <!-- Content -->
-    <div class="col-lg-12" data-aos="fade-up">
-      <h3 class="fw-bold mb-4 role">🚀 Full-Stack Web Developer | B.Tech CSE (Final Year)</h3>
-      <p class="fst-italic text-muted mb-4 desc">
-        Skilled in frontend and backend development with expertise in creating 
-        clean UI, scalable APIs, and seamless user experiences.
-      </p>
-
-      <div class="row gy-4">
-        <!-- Left Column -->
-        <div class="col-md-6">
+    <!-- Content Boxes -->
+    <div class="row g-4">
+      
+      <!-- Info Box -->
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="about-box bounce-box">
+          <h3 class="box-title">📌 Personal Information</h3>
           <ul class="list-unstyled info-list">
-            <li><i class="bi bi-cake-fill text-pink"></i> <strong>Date of Birth:</strong> <span>28 May 2002</span></li>
+           
             <li><i class="bi bi-whatsapp text-success"></i> <strong>WhatsApp:</strong> <span>+91 9589455306</span></li>
-            <li><i class="bi bi-envelope-at text-danger"></i> <strong>Email:</strong> <span>tarunpatidarrupariya@gmail.com</span></li>
+            <li><i class="bi bi-envelope-at text-primary"></i> <strong>Email:</strong> <span>tarunpatidarrupariya@gmail.com</span></li>
             <li><i class="bi bi-geo-alt-fill text-warning"></i> <strong>Location:</strong> 
-              <span>Village-Bhaisoda, Tehsil-Nalkheda, District-Agar (Malwa), MP, India</span>
+              <span>Village-Bhaisoda, Tehsil-Nalkheda, District-Agar (Malwa), Madhya-pradesh, India</span>
             </li>
           </ul>
         </div>
+      </div>
 
-        <!-- Right Column -->
-        <div class="col-md-6">
+      <!-- Social Media Box -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="about-box bounce-box">
+          <h3 class="box-title">🌐 Social Media & Education</h3>
           <ul class="list-unstyled info-list">
             <li><i class="bi bi-linkedin text-primary"></i> <strong>LinkedIn:</strong> 
-              <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="text-decoration-none">tarun-patidar</a>
+              <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="text-decoration-none">Tarun-Patidar</a>
             </li>
             <li><i class="bi bi-instagram text-danger"></i> <strong>Instagram:</strong> 
               <a href="https://instagram.com/tarunpatidar48" target="_blank" class="text-decoration-none">@tarunpatidar48</a>
@@ -324,111 +313,174 @@
         </div>
       </div>
 
-      <!-- Skills Section -->
-      <div class="skills mt-5 text-center">
-        <h4 class="fw-bold mb-4 skill-title">My Core Skills</h4>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <span class="skill-bounce">JavaScript</span>
-          <span class="skill-bounce">React</span>
-          <span class="skill-bounce">Node.js</span>
-          <span class="skill-bounce">Express</span>
-          <span class="skill-bounce">MongoDB</span>
-        </div>
-      </div>
-
-      <p class="mt-4 desc">
-        Currently in my final year of engineering, I am actively working on projects 
-        that enhance my skills in <strong>JavaScript, React, Node.js, Express, and MongoDB</strong>.  
-        My goal is to grow as a developer and contribute to impactful projects in the tech industry.
-      </p>
     </div>
   </div>
 </section>
 
-<!-- Custom CSS -->
+<!-- ========== Custom CSS ========== -->
 <style>
-/* General Section */
-.about {
-  background: #fdfdfd; /* हल्का clean look */
+/* Global Font */
+#about {
   font-family: 'Times New Roman', Times, serif;
-  color: #222;
-  text-align: justify;
 }
 
 /* Section Title */
-.title {
-  font-size: 2.5rem;
+#about .title {
+  font-size: 2.2rem;
   font-weight: bold;
   color: #222;
-  position: relative;
 }
-.title::after {
-  content: "";
-  width: 90px;
-  height: 3px;
-  background: #007bff;
-  display: block;
-  margin: 12px auto 0;
-  border-radius: 2px;
-  animation: underline 2s infinite alternate;
+#about .subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 800px;
+  margin: auto;
 }
 
-/* Subtitle */
-.subtitle {
-  max-width: 700px;
-  margin: auto;
-  font-size: 1.2rem;
+/* About Boxes */
+.about-box {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  animation: bounceBox 2.5s infinite;
+}
+.about-box:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+/* Box Title */
+.box-title {
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #444;
-  text-align: justify;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.6);
+  padding-bottom: 8px;
 }
 
 /* Info List */
 .info-list li {
   margin-bottom: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
+  font-size: 1rem;
 }
-.info-list li:hover {
-  transform: translateX(5px);
+.info-list strong {
+  color: #fff;
 }
-.info-list i {
-  margin-right: 8px;
-  font-size: 1.2rem;
-}
-.info-list span, 
 .info-list a {
-  color: #444;
+  color: #ffe600;
   font-weight: bold;
 }
 .info-list a:hover {
-  color: #0d6efd;
   text-decoration: underline;
 }
 
-/* Headings */
-.role {
-  font-size: 1.7rem;
-  font-weight: bold;
-  color: #0056b3;
-  text-align: left;
-}
-.skill-title {
-  font-size: 1.4rem;
-  color: #333;
-  font-weight: bold;
+/* Bounce Animation */
+@keyframes bounceBox {
+  0%,20%,50%,80%,100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
 }
 
-/* Description */
-.desc {
-  font-size: 1.05rem;
-  font-weight: bold;
-  color: #333;
-  line-height: 1.6;
+/* Responsive */
+@media (max-width: 768px) {
+  #about .title { font-size: 1.8rem; }
+  #about .subtitle { font-size: 1rem; }
+  .box-title { font-size: 1.2rem; }
+}
+</style>
+
+<!-- About Section -->
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills py-5">
+  <div class="container">
+
+    <!-- Section Title -->
+    <div class="section-title text-center mb-5" data-aos="fade-down">
+      <h2 class="fw-bold title">My Core Skills</h2>
+      <p class="subtitle">
+        I specialize in <strong>Full-Stack Web Development</strong> and core Computer Science concepts, 
+        building modern, scalable, and responsive applications.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      
+      <!-- Skills Box -->
+      <div class="col-md-12" data-aos="fade-up">
+        <div class="skill-box bounce-box">
+          <h3 class="box-title">🚀 Technical Skills</h3>
+          
+          <!-- Skills List -->
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <span class="skill-bounce">JavaScript</span>
+            <span class="skill-bounce">React</span>
+            <span class="skill-bounce">Node.js</span>
+            <span class="skill-bounce">Express</span>
+            <span class="skill-bounce">MongoDB</span>
+          </div>
+
+          <!-- Skill Description -->
+          <p class="mt-4 desc text-center">
+            Currently in my final year of engineering, I am actively working on projects 
+            that enhance my skills in <strong>JavaScript, React, Node.js, Express, and MongoDB</strong>.  
+            My goal is to grow as a developer and contribute to impactful projects in the tech industry.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== Custom CSS (Same Theme as About Section) ========== -->
+<style>
+/* Section Base */
+#skills {
+  font-family: 'Times New Roman', Times, serif;
+  background: #fdfdfd;
+  color: #222;
 }
 
-/* Skills Bounce Animation */
+/* Title */
+#skills .title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #222;
+}
+#skills .subtitle {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 750px;
+  margin: auto;
+}
+
+/* Skill Box */
+.skill-box {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  animation: bounceBox 2.5s infinite;
+}
+.skill-box:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+/* Box Title */
+.skill-box .box-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.6);
+  padding-bottom: 8px;
+}
+
+/* Skills Tags */
 .skill-bounce {
   display: inline-block;
   padding: 8px 16px;
@@ -443,24 +495,34 @@
 .skill-bounce:nth-child(4) { animation-delay: 0.6s; }
 .skill-bounce:nth-child(5) { animation-delay: 0.8s; }
 
-/* Animations */
-@keyframes underline {
-  from { width: 60px; }
-  to { width: 120px; }
+/* Description */
+.skill-box .desc {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Bounce Animations */
+@keyframes bounceBox {
+  0%,20%,50%,80%,100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
 }
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  0%,20%,50%,80%,100% { transform: translateY(0); }
   40% { transform: translateY(-10px); }
   60% { transform: translateY(-5px); }
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  #skills .title { font-size: 1.8rem; }
+  #skills .subtitle { font-size: 1rem; }
+  .skill-box .box-title { font-size: 1.2rem; }
+}
 </style>
 
-<!-- AOS Animation -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 1000, once: true });
-</script>
 
 
         <!-- ========== End Section About ========== -->
@@ -470,10 +532,10 @@
 
 <!-- ========== Start Section Notes & Certificates ========== -->
 <!-- ========== Start Section Resources ========== -->
+<!-- ========== Start Section Resources ========== -->
 <section id="resources" class="py-5 bg-light">
   <div class="container">
 
-    <!-- Section Title -->
     <div class="section-title text-center mb-4" data-aos="fade-down">
       <h2 class="fw-bold section-heading">My Notes & Certificates</h2>
       <p class="section-subtitle">
@@ -488,9 +550,9 @@
       
       <!-- Notes Box -->
       <div class="col-md-6 col-lg-5" data-aos="zoom-in">
-        <div class="p-4 shadow-sm rounded bg-white h-100 d-flex flex-column justify-content-between">
+        <div class="section-box">
           <h4 class="fw-bold mb-3">📘 Academic Notes</h4>
-          <p class="text-muted">
+          <p>
             Access my detailed notes covering <strong>Computer Science core subjects</strong>,  
             designed to help students excel in academics and interviews.
           </p>
@@ -502,9 +564,9 @@
 
       <!-- Certificates Box -->
       <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-        <div class="p-4 shadow-sm rounded bg-white h-100 d-flex flex-column justify-content-between">
+        <div class="section-box">
           <h4 class="fw-bold mb-3">🏆 Verified Certificates</h4>
-          <p class="text-muted">
+          <p>
             Browse through my <strong>industry-recognized certifications</strong>  
             that validate my skills, technical knowledge, and professional growth.
           </p>
@@ -519,14 +581,93 @@
 </section>
 <!-- ========== End Section Resources ========== -->
 
-<!-- Custom CSS -->
+
+<!-- ========== Start Section Skills ========== -->
+<section id="skills-link" class="py-5 bg-light">
+  <div class="container">
+
+    <div class="section-title text-center mb-4" data-aos="fade-down">
+      <h2 class="fw-bold section-heading">My Skills</h2>
+      <p class="section-subtitle">
+        Explore my <strong>technical skills</strong> including programming, web development, databases,  
+        and core computer science & engineering concepts.  
+        Click below to view detailed skills.
+      </p>
+    </div>
+
+    <div class="text-center" data-aos="zoom-in">
+      <div class="section-box d-inline-block">
+        <a href="skills.html" class="btn-custom btn-skills">
+          <i class="bi bi-lightning-charge"></i> Visit Skills Page
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ========== End Section Skills ========== -->
+
+
+<!-- ========== Start Section Resume ========== -->
+<section id="resume" class="resume py-5 bg-light">
+  <div class="container">
+
+    <div class="section-title text-center mb-4" data-aos="fade-down">
+      <h2 class="fw-bold section-heading">Resume</h2>
+      <p class="section-subtitle">
+        A well-crafted resume that highlights my <strong>technical expertise</strong>, 
+        <strong>academic journey</strong>, and <strong>professional projects</strong>.  
+        Explore to understand why I’m the right fit for your team.
+      </p>
+    </div>
+
+    <div class="text-center" data-aos="zoom-in">
+      <div class="section-box d-inline-block">
+        <a href="resume.html" target="_blank" class="btn-custom btn-resume">
+          <i class="bi bi-file-person"></i> View My Resume
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ========== End Section Resume ========== -->
+
+
+<!-- ========== Start Section Projects ========== -->
+<section id="projects" class="projects py-5 bg-light">
+  <div class="container text-center">
+
+    <div class="section-title mb-4" data-aos="fade-down">
+      <h2 class="fw-bold section-heading">My Projects</h2>
+      <p class="section-subtitle">
+        Explore my <strong>real-world projects</strong> that highlight expertise in MERN Stack and JavaScript.
+      </p>
+    </div>
+
+    <div data-aos="zoom-in">
+      <div class="section-box d-inline-block">
+        <a href="projects.html" class="btn-custom btn-projects">
+          <i class="bi bi-folder2-open"></i> View Projects
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ========== End Section Projects ========== -->
+
+
+<!-- ========== CSS (Shared for all Sections) ========== -->
 <style>
-/* Section Global */
-#resources {
+/* Global Font */
+#resources, #skills-link, #resume, #projects {
   font-family: 'Times New Roman', Times, serif;
 }
+
+/* Section Title */
 .section-heading {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   color: #222;
 }
@@ -534,14 +675,28 @@
   max-width: 750px;
   margin: auto;
   font-size: 1.1rem;
+  font-weight: bold;
   color: #444;
+  text-align: justify;
   line-height: 1.6;
 }
 
-/* Custom Buttons */
+/* Box Style (Common for all sections) */
+.section-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+.section-box:hover {
+  transform: translateY(-6px);
+}
+
+/* Buttons */
 .btn-custom {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 12px 30px;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 30px;
@@ -552,11 +707,18 @@
 }
 .btn-notes {
   background: linear-gradient(135deg, #36d1dc, #5b86e5);
-  box-shadow: 0 6px 16px rgba(91, 134, 229, 0.4);
 }
 .btn-cert {
   background: linear-gradient(135deg, #ff512f, #dd2476);
-  box-shadow: 0 6px 16px rgba(221, 36, 118, 0.4);
+}
+.btn-skills {
+  background: linear-gradient(135deg, #ff512f, #f09819);
+}
+.btn-resume {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+.btn-projects {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
 }
 .btn-custom:hover {
   transform: scale(1.08);
@@ -570,124 +732,11 @@
   60% { transform: translateY(-3px); }
 }
 
-/* Mobile Responsive */
+/* Responsive */
 @media (max-width: 768px) {
-  .section-heading { font-size: 1.6rem; }
+  .section-heading { font-size: 1.8rem; }
   .section-subtitle { font-size: 1rem; }
-  .btn-custom { font-size: 0.9rem; padding: 10px 24px; }
-}
-</style>
-
-<!-- ========== End Section Notes & Certificates ========== -->
-
-<!-- ========== Start Section Skills ========== -->
-<section id="skills-link" class="py-5 bg-light">
-  <div class="container">
-
-    <!-- Section Title -->
-    <div class="section-title text-center mb-4" data-aos="fade-down">
-      <h2 class="fw-bold section-heading">My Skills</h2>
-      <p class="section-subtitle">
-        Explore my <strong>technical skills</strong> including programming, web development, databases,  
-        and core computer science & engineering concepts.  
-        Click below to view detailed skills.
-      </p>
-    </div>
-
-    <!-- Button -->
-    <div class="text-center" data-aos="zoom-in">
-      <a href="skills.html" class="btn-custom btn-skills">
-        <i class="bi bi-lightning-charge"></i> Visit Skills Page
-      </a>
-    </div>
-
-  </div>
-</section>
-<!-- ========== End Section Skills ========== -->
-
-<!-- Custom CSS -->
-<style>
-/* Global font */
-#resources, #skills-link {
-  font-family: 'Times New Roman', Times, serif;
-}
-
-/* Section Headings */
-.section-heading {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #222;
-  position: relative;
-}
-.section-heading::after {
-  content: "";
-  width: 90px;
-  height: 3px;
-  background: linear-gradient(90deg, #ff512f, #dd2476);
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 2px;
-  animation: underline 2s infinite alternate;
-}
-
-/* Subtitle */
-.section-subtitle {
-  max-width: 700px;
-  margin: auto;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #444;
-  text-align: justify;
-}
-
-/* Buttons */
-.btn-custom {
-  display: inline-block;
-  padding: 12px 30px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.3s ease;
-  animation: bounceBtn 2s infinite;
-}
-.btn-notes {
-  background: linear-gradient(135deg, #36d1dc, #5b86e5);
-  box-shadow: 0 8px 18px rgba(91, 134, 229, 0.4);
-}
-.btn-skills {
-  background: linear-gradient(135deg, #ff512f, #f09819);
-  box-shadow: 0 8px 18px rgba(255, 81, 47, 0.4);
-}
-.btn-custom:hover {
-  transform: scale(1.07);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
-}
-
-/* Animations */
-@keyframes underline {
-  from { width: 60px; }
-  to { width: 120px; }
-}
-@keyframes bounceBtn {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
-}
-
-/* Mobile Friendly */
-@media (max-width: 768px) {
-  .section-heading {
-    font-size: 1.8rem;
-  }
-  .section-subtitle {
-    font-size: 1rem;
-  }
-  .btn-custom {
-    font-size: 1rem;
-    padding: 10px 24px;
-  }
+  .btn-custom { font-size: 1rem; padding: 10px 22px; }
 }
 </style>
 
@@ -698,184 +747,6 @@
   AOS.init({ duration: 1000, once: true });
 </script>
 
-
-
-
-
-        <!-- ========== End Section Skills ========== -->
-        <!-- ========== Start Section Resume ========== -->
-        <!-- ========== Start Section Resume ========== -->
-
-
-<!-- ========== Start Resume Section ========== -->
-
-
-<!-- Resume Section -->
-
-
-
-<!-- Resume Section -->
-<section id="resume" class="resume py-5 bg-light">
-  <div class="container">
-
-    <!-- Section Title -->
-    <div class="section-title text-center mb-4" data-aos="fade-down">
-      <h2 class="fw-bold section-heading">Resume</h2>
-      <p class="section-subtitle">
-        A well-crafted resume that highlights my <strong>technical expertise</strong>, 
-        <strong>academic journey</strong>, and <strong>professional projects</strong>.  
-        Explore to understand why I’m the right fit for your team.
-      </p>
-    </div>
-
-    <!-- Resume Button -->
-    <div class="text-center" data-aos="zoom-in">
-      <a href="resume.html" target="_blank" class="btn-custom btn-resume">
-        <i class="bi bi-file-person"></i> View My Resume
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- Custom CSS (Same Theme as Notes & Skills Buttons) -->
-<style>
-/* Section Theme */
-.resume {
-  font-family: 'Times New Roman', Times, serif;
-}
-
-/* Heading */
-.section-heading {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #222;
-  position: relative;
-}
-.section-heading::after {
-  content: "";
-  width: 90px;
-  height: 3px;
-  background: linear-gradient(90deg, #36d1dc, #5b86e5);
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 2px;
-  animation: underline 2s infinite alternate;
-}
-.section-subtitle {
-  max-width: 700px;
-  margin: auto;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #444;
-  text-align: justify;
-}
-
-/* Resume Button (same theme as Notes & Skills) */
-.btn-custom {
-  display: inline-block;
-  padding: 12px 32px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.3s ease;
-  animation: bounceBtn 2s infinite;
-}
-.btn-resume {
-  background: linear-gradient(135deg, #ff512f, #f09819); /* same as Skills button */
-  box-shadow: 0 8px 18px rgba(240, 152, 25, 0.4);
-}
-.btn-custom:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
-}
-
-/* Animations */
-@keyframes underline {
-  from { width: 60px; }
-  to { width: 120px; }
-}
-@keyframes bounceBtn {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .section-heading { font-size: 1.8rem; }
-  .section-subtitle { font-size: 1rem; }
-  .btn-custom { font-size: 1rem; padding: 10px 24px; }
-}
-</style>
-
-
-<!-- ========== End Section Resume ========== -->
-
-        <!-- ========== End Section Resume ========== -->
-        <!-- ========== Start Section Project ========== -->
-        <!-- ✅ Projects Section Start -->
-
-<!-- ========== Start Projects Section ========== -->
-
-
-<!-- Projects Section -->
-
-<section id="projects" class="projects py-5 bg-light">
-  <div class="container text-center">
-    <div class="section-title mb-4">
-      <h2 class="fw-bold section-heading">My Projects</h2>
-      <p class="section-subtitle">
-        Explore my <strong>real-world projects</strong> that highlight expertise in MERN Stack and JavaScript.
-      </p>
-    </div>
-
-    <!-- Single Button (redirects to projects.html) -->
-    <a href="projects.html" class="btn-custom btn-projects">
-      <i class="bi bi-folder2-open"></i> View Projects
-    </a>
-  </div>
-</section>
-
-<!-- CSS -->
-<style>
-.projects { font-family:'Times New Roman', Times, serif; }
-.section-heading { font-size:2rem;font-weight:bold;color:#222; }
-.section-subtitle { 
-  max-width:700px;
-  margin:auto;
-  font-size:1.1rem;
-  font-weight:bold;
-  color:#444;
-  text-align:justify; 
-}
-.btn-custom {
-  display:inline-block;
-  padding:12px 30px;
-  font-size:1rem;
-  font-weight:bold;
-  border-radius:30px;
-  text-decoration:none;
-  color:#fff;
-  transition:all 0.3s ease;
-  animation:bounceBtn 2s infinite;
-}
-.btn-projects {
-  background:linear-gradient(135deg,#36d1dc,#5b86e5);
-  box-shadow:0 6px 14px rgba(91,134,229,0.4);
-}
-.btn-custom:hover {
-  transform:scale(1.08);
-  box-shadow:0 10px 20px rgba(0,0,0,0.25);
-}
-@keyframes bounceBtn {
-  0%,20%,50%,80%,100% {transform:translateY(0);}
-  40% {transform:translateY(-8px);}
-  60% {transform:translateY(-4px);}
-}
-</style>
 
 
 <!-- ✅ Projects Section End -->
