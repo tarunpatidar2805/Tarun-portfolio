@@ -24,117 +24,160 @@
     <title>Tarun Patidar Portfolio</title>
     <p>welcome to Tarun patidar Portfolio</p>
 </head>
+
+
+
+
+
+<!--  -->
+
+
+
+
+<!-- ========== Start Section Header ========== -->
+
 <body>
   
 
     <!-- ========== Start Mobile Nav Toggle Buttun ========== -->
     <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
     <!-- ========== End Mobile Nav Toggle Buttun ========== -->
-    <!-- ========== Start Section Header ========== -->
-    <header id="header">
-        <div class="d-flex flex-column">
-           <div class="profile">
-            <!-- profile imag start-->
-<img src="img/profile-img.jpg" alt="Tarun Patidar" class="profile-img" style="width:100px; height:100px;">
-
-<style>
-  .profile-img {
-      width: 100px;   /* छोटा size */
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-      transition: all 0.3s ease-in-out;
-  }
-
-  .profile-img:hover {
-      transform: scale(1.1) rotate(2deg);
-      border: 3px solid transparent;
-      background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
-      padding: 3px;
-  }
-</style>
-
+    <!-- ========== Start Section Header  side bar slim ========== -->
     
-    <!-- profile img end -->
-    <h1 class="text-light">Tarun Patidar</h1>
-    <!-- Instagram,facebook,linkdin start -->
-    <div class="text-center mt-3 social-links">
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/tarunpatidar48" target="_blank" class="btn-social instagram" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
+<!-- ========== Start Section Header ========== -->
+<!-- ========== Start Section Header ========== -->
+<!-- ========== Start Section Header ========== -->
+<header id="header" style="width: 200px;"> <!-- Slim Sidebar -->
+  <div class="d-flex flex-column text-center">
+
+    <!-- Profile -->
+    <div class="profile py-3">
+      <img src="img/profile-img.jpg" alt="Tarun Patidar" class="profile-img">
+      <h1 class="text-light mt-2 fs-6">Tarun Patidar</h1>
+      
+      <!-- Social links -->
+      <div class="social-links mt-3">
+        <a href="https://www.instagram.com/tarunpatidar48" target="_blank" class="instagram" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
         </a>
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/profile.php?id=100082160439292" target="_blank" class="btn-social facebook" title="Facebook">
-            <i class="fa-brands fa-facebook"></i>
+        <a href="https://www.facebook.com/profile.php?id=100082160439292" target="_blank" class="facebook" title="Facebook">
+          <i class="fa-brands fa-facebook"></i>
         </a>
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="btn-social linkedin" title="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
+        <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="linkedin" title="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
         </a>
+      </div>
     </div>
-</div>
 
+    <!-- Nav Menu -->
+    <nav id="navbar" class="navbar nav-menu mt-4">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="fa-solid fa-user"></i><span>About</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="fa-solid fa-folder"></i><span>Resume</span></a></li>
+        <li><a href="#projects" class="nav-link scrollto"><i class="fa-solid fa-address-card"></i><span>Projects</span></a></li>
+        <li><a href="#certificates" class="nav-link scrollto"><i class="fa-solid fa-certificate"></i><span>Certificates</span></a></li>
+        <li><a href="#services" class="nav-link scrollto"><i class="fa-solid fa-server"></i><span>Services</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+<!-- ========== End Section Header ========== -->
+
+<!-- Smooth Scroll JS -->
+<script>
+  document.querySelectorAll('.scrollto').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 20,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+
+<!-- CSS for Slim Sidebar -->
 <style>
+/* Sidebar Base */
+#header {
+  background: #111;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  z-index: 999;
+  padding-bottom: 20px; /* neeche space milega but footer nahi hoga */
+}
+
+/* Profile Image - Circular */
+.profile-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+}
+.profile-img:hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+/* Social Icons */
 .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 }
-
-.btn-social {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 18px;
-    color: #fff;
-    transition: all 0.3s ease-in-out;
-    background: #444; /* default dark */
-    text-decoration: none;
+.social-links a {
+  font-size: 20px;
+  transition: 0.3s;
 }
+.social-links a.instagram { color: #E4405F; }  /* Instagram */
+.social-links a.facebook { color: #1877f2; }  /* Facebook */
+.social-links a.linkedin { color: #0a66c2; }  /* LinkedIn */
+.social-links a:hover { transform: scale(1.3); }
 
-.btn-social:hover {
-    transform: scale(1.2) rotate(10deg);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+/* Nav Menu */
+#header .nav-menu ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
 }
-
-/* Instagram gradient */
-.btn-social.instagram {
-    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+#header .nav-menu li {
+  margin: 15px 0;
 }
-
-/* Facebook blue */
-.btn-social.facebook {
-    background: #1877f2;
+#header .nav-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+  padding: 8px 12px;
+  border-radius: 8px;
 }
-
-/* LinkedIn blue */
-.btn-social.linkedin {
-    background: #0a66c2;
+#header .nav-menu a:hover, 
+#header .nav-menu a.active {
+  background: #007bff;
+  color: #fff;
 }
 </style>
 
-            </div>
-            <!-- Instagram ,facebook ,linkdin end -->
-            <nav id="navbar" class="navbar nav-menu">
-                <ul>
-                    <li>
-                        <a href="#hero" class="nav-link scrollto active "><i class=" fa-solid fa-house"></i> <span>Home</span></a>
-                        <a href="#about" class="nav-link scrollto "><i class=" fa-solid fa-user"></i> <span>About</span></a>
-                        <a href="#resume" class="nav-link scrollto "><i class=" fa-solid fa-folder"></i> <span>Resume</span></a>
-                        <a href="#portfolio" class="nav-link scrollto "><i class=" fa-solid fa-address-card"></i> <span>project</span></a>
-                        <a href="#services" class="nav-link scrollto "><i class=" fa-solid fa-server"></i> <span>Services</span></a>
-                        <a href="#contact" class="nav-link scrollto "><i class=" fa-solid fa-envelope"></i> <span>Contact</span></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <!-- ========== End Section Header ========== -->
+
+
+
+    <!-- ========== End Section Header  side bar slim ========== -->
     <!-- ========== Start Section Hero ========== -->
    <section id="hero" class="d-flex flex-column justify-content-center align-items-center"
     style="
@@ -159,303 +202,780 @@
     <!-- ========== Start Main Area ========== -->
     <main id="main">
         <!-- ========== Start Section About ========== -->
-       <section id="about" class="about py-5 bg-light">
+       
+
+<!-- About Section -->
+
+
+<!-- About Section -->
+
+
+<!-- About Section -->
+<section id="about" class="about py-5">
   <div class="container">
+
     <!-- Section Title -->
-    <div class="section-title text-center mb-5">
-      <h2 class="fw-bold">About Me</h2>
-      <p class="text-muted">
-        I am a <strong>Final Year B.Tech    computer sceince and engineering  Student at Medicaps university ,Indore,Madhya-Pradesh</strong> and an aspiring 
-        <strong>Full-Stack Web Developer</strong>. Passionate about building 
-        modern, responsive, and scalable web applications, I love turning 
+    <div class="section-title text-center mb-5" data-aos="fade-down">
+      <h2 class="fw-bold title">About Me</h2>
+      <p class="subtitle">
+        I am a <strong>Final Year B.Tech Computer Science and Engineering Student at Medicaps University, Indore</strong>, 
+        and an aspiring <strong>Full-Stack Web Developer</strong>.  
+        Passionate about building modern, responsive, and scalable web applications, I love turning 
         ideas into reality using the latest technologies.
       </p>
     </div>
 
-    <!-- <div class="row align-items-center">
-    
-      <div class="col-lg-4 text-center mb-4 mb-lg-0" data-aos="fade-right">
-        <img src="img/profile-img.jpg" 
-             alt="Profile Image"
-             class="profile-img shadow rounded-circle">
-      </div> -->
+    <!-- Content -->
+    <div class="col-lg-12" data-aos="fade-up">
+      <h3 class="fw-bold mb-4 role">🚀 Full-Stack Web Developer | B.Tech CSE (Final Year)</h3>
+      <p class="fst-italic text-muted mb-4 desc">
+        Skilled in frontend and backend development with expertise in creating 
+        clean UI, scalable APIs, and seamless user experiences.
+      </p>
 
-      <!-- Content -->
-       
-      <!-- About Section -->
-<div class="col-lg-8" data-aos="fade-left">
-  <h3 class="fw-bold mb-4 text-primary">Full-Stack Web Developer | B.Tech CSE (Final Year)</h3>
-  <p class="fst-italic text-muted mb-5">
-    Skilled in frontend and backend development with expertise in creating 
-    clean UI, scalable APIs, and seamless user experiences.
-  </p>
+      <div class="row gy-4">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <ul class="list-unstyled info-list">
+            <li><i class="bi bi-cake-fill text-pink"></i> <strong>Date of Birth:</strong> <span>28 May 2002</span></li>
+            <li><i class="bi bi-whatsapp text-success"></i> <strong>WhatsApp:</strong> <span>+91 9589455306</span></li>
+            <li><i class="bi bi-envelope-at text-danger"></i> <strong>Email:</strong> <span>tarunpatidarrupariya@gmail.com</span></li>
+            <li><i class="bi bi-geo-alt-fill text-warning"></i> <strong>Location:</strong> 
+              <span>Village-Bhaisoda, Tehsil-Nalkheda, District-Agar (Malwa), MP, India</span>
+            </li>
+          </ul>
+        </div>
 
-  <div class="row gy-4">
-    <!-- Left Column -->
-    <div class="col-md-6">
-      <ul class="list-unstyled info-list">
-        <li><i class="bi bi-cake text-primary"></i> <strong>Date of Birth:</strong> <span>28 May 2002</span></li>
-        <li><i class="bi bi-whatsapp text-success"></i> <strong>WhatsApp:</strong> <span>+91 9589455306</span></li>
-        <li><i class="bi bi-envelope-at text-danger"></i> <strong>Email:</strong> <span>tarunpatidarrupariya@gmail.com</span></li>
-        <li><i class="bi bi-geo-alt text-warning"></i> <strong>Location:</strong> 
-          <span>Village-Bhaisoda, Tehsil-Nalkheda, District-Agar (Malwa), MP, India</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right Column -->
-    <div class="col-md-6">
-      <ul class="list-unstyled info-list">
-        <li><i class="bi bi-linkedin text-primary"></i> <strong>LinkedIn:</strong> 
-          <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="text-decoration-none">tarun-patidar</a>
-        </li>
-        <li><i class="bi bi-instagram text-danger"></i> <strong>Instagram:</strong> 
-          <a href="https://instagram.com/tarunpatidar48" target="_blank" class="text-decoration-none">@tarunpatidar48</a>
-        </li>
-        <li><i class="bi bi-mortarboard text-success"></i> <strong>Degree:</strong> 
-          <span>B.Tech (Computer Science & Engineering)</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Custom CSS -->
-<style>
-  .info-list li {
-    margin-bottom: 12px;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  .info-list i {
-    margin-right: 8px;
-    font-size: 1.1rem;
-  }
-  .info-list strong {
-    color: #222;
-  }
-  .info-list span, 
-  .info-list a {
-    color: #555;
-  }
-  .info-list a:hover {
-    color: #0d6efd;
-  }
-</style>
-
-
-        <p class="mt-3">
-          Currently in my final year of engineering, I am actively working on projects 
-          that enhance my skills in <strong>JavaScript, React, Node.js, Express, and MongoDB</strong>. 
-          My goal is to grow as a developer and contribute to impactful projects in the tech industry.
-        </p>
-
-        
+        <!-- Right Column -->
+        <div class="col-md-6">
+          <ul class="list-unstyled info-list">
+            <li><i class="bi bi-linkedin text-primary"></i> <strong>LinkedIn:</strong> 
+              <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="text-decoration-none">tarun-patidar</a>
+            </li>
+            <li><i class="bi bi-instagram text-danger"></i> <strong>Instagram:</strong> 
+              <a href="https://instagram.com/tarunpatidar48" target="_blank" class="text-decoration-none">@tarunpatidar48</a>
+            </li>
+            <li><i class="bi bi-mortarboard-fill text-success"></i> <strong>Degree:</strong> 
+              <span>B.Tech (Computer Science & Engineering)</span>
+            </li>
+          </ul>
+        </div>
       </div>
+
+      <!-- Skills Section -->
+      <div class="skills mt-5 text-center">
+        <h4 class="fw-bold mb-4 skill-title">My Core Skills</h4>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <span class="skill-bounce">JavaScript</span>
+          <span class="skill-bounce">React</span>
+          <span class="skill-bounce">Node.js</span>
+          <span class="skill-bounce">Express</span>
+          <span class="skill-bounce">MongoDB</span>
+        </div>
+      </div>
+
+      <p class="mt-4 desc">
+        Currently in my final year of engineering, I am actively working on projects 
+        that enhance my skills in <strong>JavaScript, React, Node.js, Express, and MongoDB</strong>.  
+        My goal is to grow as a developer and contribute to impactful projects in the tech industry.
+      </p>
     </div>
   </div>
 </section>
 
 <!-- Custom CSS -->
 <style>
-  .profile-img {
-    width: 280px;       /* Desktop size */
-    height: 280px;
-    object-fit: cover;  /* Crop perfectly */
-    border: 5px solid #fff;
-  }
+/* General Section */
+.about {
+  background: #fdfdfd; /* हल्का clean look */
+  font-family: 'Times New Roman', Times, serif;
+  color: #222;
+  text-align: justify;
+}
 
-  @media (max-width: 768px) {
-    .profile-img {
-      width: 180px;   /* Mobile size */
-      height: 180px;
-    }
-  }
+/* Section Title */
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+  position: relative;
+}
+.title::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  background: #007bff;
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 2px;
+  animation: underline 2s infinite alternate;
+}
+
+/* Subtitle */
+.subtitle {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444;
+  text-align: justify;
+}
+
+/* Info List */
+.info-list li {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+.info-list li:hover {
+  transform: translateX(5px);
+}
+.info-list i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+.info-list span, 
+.info-list a {
+  color: #444;
+  font-weight: bold;
+}
+.info-list a:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+/* Headings */
+.role {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #0056b3;
+  text-align: left;
+}
+.skill-title {
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Description */
+.desc {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Skills Bounce Animation */
+.skill-bounce {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #eaf2ff;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #0056b3;
+  animation: bounce 2s infinite;
+}
+.skill-bounce:nth-child(2) { animation-delay: 0.2s; }
+.skill-bounce:nth-child(3) { animation-delay: 0.4s; }
+.skill-bounce:nth-child(4) { animation-delay: 0.6s; }
+.skill-bounce:nth-child(5) { animation-delay: 0.8s; }
+
+/* Animations */
+@keyframes underline {
+  from { width: 60px; }
+  to { width: 120px; }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
 </style>
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
 
 
         <!-- ========== End Section About ========== -->
         <!-- ========== Start Section Notes Link ========== -->
+
+
+
+<!-- ========== Start Section Notes & Certificates ========== -->
+<!-- ========== Start Section Resources ========== -->
 <section id="resources" class="py-5 bg-light">
   <div class="container">
-    <div class="section-title text-center mb-4">
-      <h2>My Notes & Certificates</h2>
-      <p class="text-muted">
-        Access a collection of my academic notes and verified certificates. Perfect for revision, learning, and reference!
+
+    <!-- Section Title -->
+    <div class="section-title text-center mb-4" data-aos="fade-down">
+      <h2 class="fw-bold section-heading">My Notes & Certificates</h2>
+      <p class="section-subtitle">
+        Explore a collection of my <strong>academic notes</strong> and <strong>verified certificates</strong>.  
+        📘 Notes are designed to <strong>add value to your academic & professional journey</strong>,  
+        while 🏆 Certificates <strong>demonstrate my verified skills & achievements</strong>.  
+        <br>HRs and fellow learners are welcome to view!
       </p>
     </div>
 
-    <div class="text-center">
-      <a href="notes.html" class="btn btn-primary btn-lg">
-        <i class="bi bi-file-earmark-text"></i> Visit Notes Page
-      </a>
+    <div class="row text-center justify-content-center g-4">
+      
+      <!-- Notes Box -->
+      <div class="col-md-6 col-lg-5" data-aos="zoom-in">
+        <div class="p-4 shadow-sm rounded bg-white h-100 d-flex flex-column justify-content-between">
+          <h4 class="fw-bold mb-3">📘 Academic Notes</h4>
+          <p class="text-muted">
+            Access my detailed notes covering <strong>Computer Science core subjects</strong>,  
+            designed to help students excel in academics and interviews.
+          </p>
+          <a href="notes.html" class="btn-custom btn-notes mt-3">
+            <i class="bi bi-file-earmark-text"></i> View Notes
+          </a>
+        </div>
+      </div>
+
+      <!-- Certificates Box -->
+      <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+        <div class="p-4 shadow-sm rounded bg-white h-100 d-flex flex-column justify-content-between">
+          <h4 class="fw-bold mb-3">🏆 Verified Certificates</h4>
+          <p class="text-muted">
+            Browse through my <strong>industry-recognized certifications</strong>  
+            that validate my skills, technical knowledge, and professional growth.
+          </p>
+          <a href="certificate.html" class="btn-custom btn-cert mt-3">
+            <i class="bi bi-award"></i> View Certificates
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-<!-- ========== End Section Notes Link ========== -->
+<!-- ========== End Section Resources ========== -->
 
-        <!-- ========== End Section fact ========== -->
-        <!-- ========== Start Section Skills ========== -->
-      <section id="skills-link" class="py-5 bg-light">
+<!-- Custom CSS -->
+<style>
+/* Section Global */
+#resources {
+  font-family: 'Times New Roman', Times, serif;
+}
+.section-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+.section-subtitle {
+  max-width: 750px;
+  margin: auto;
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Custom Buttons */
+.btn-custom {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  animation: bounceBtn 2s infinite;
+}
+.btn-notes {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  box-shadow: 0 6px 16px rgba(91, 134, 229, 0.4);
+}
+.btn-cert {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  box-shadow: 0 6px 16px rgba(221, 36, 118, 0.4);
+}
+.btn-custom:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+}
+
+/* Button Animation */
+@keyframes bounceBtn {
+  0%,20%,50%,80%,100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .section-heading { font-size: 1.6rem; }
+  .section-subtitle { font-size: 1rem; }
+  .btn-custom { font-size: 0.9rem; padding: 10px 24px; }
+}
+</style>
+
+<!-- ========== End Section Notes & Certificates ========== -->
+
+<!-- ========== Start Section Skills ========== -->
+<section id="skills-link" class="py-5 bg-light">
   <div class="container">
-    <div class="section-title text-center mb-4">
-      <h2>My Skills</h2>
-      <p class="text-muted">
-        Explore my technical skills including programming, web development, databases, and core computer science &engineering concepts.  
+
+    <!-- Section Title -->
+    <div class="section-title text-center mb-4" data-aos="fade-down">
+      <h2 class="fw-bold section-heading">My Skills</h2>
+      <p class="section-subtitle">
+        Explore my <strong>technical skills</strong> including programming, web development, databases,  
+        and core computer science & engineering concepts.  
         Click below to view detailed skills.
       </p>
     </div>
 
-    <div class="text-center">
-      <a href="skills.html" class="btn btn-success btn-lg">
+    <!-- Button -->
+    <div class="text-center" data-aos="zoom-in">
+      <a href="skills.html" class="btn-custom btn-skills">
         <i class="bi bi-lightning-charge"></i> Visit Skills Page
       </a>
     </div>
+
   </div>
 </section>
+<!-- ========== End Section Skills ========== -->
+
+<!-- Custom CSS -->
+<style>
+/* Global font */
+#resources, #skills-link {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Section Headings */
+.section-heading {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #222;
+  position: relative;
+}
+.section-heading::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  animation: underline 2s infinite alternate;
+}
+
+/* Subtitle */
+.section-subtitle {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #444;
+  text-align: justify;
+}
+
+/* Buttons */
+.btn-custom {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  animation: bounceBtn 2s infinite;
+}
+.btn-notes {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  box-shadow: 0 8px 18px rgba(91, 134, 229, 0.4);
+}
+.btn-skills {
+  background: linear-gradient(135deg, #ff512f, #f09819);
+  box-shadow: 0 8px 18px rgba(255, 81, 47, 0.4);
+}
+.btn-custom:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+}
+
+/* Animations */
+@keyframes underline {
+  from { width: 60px; }
+  to { width: 120px; }
+}
+@keyframes bounceBtn {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 1.8rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  .btn-custom {
+    font-size: 1rem;
+    padding: 10px 24px;
+  }
+}
+</style>
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
+
+
+
+
 
         <!-- ========== End Section Skills ========== -->
         <!-- ========== Start Section Resume ========== -->
         <!-- ========== Start Section Resume ========== -->
-<section id="resume" class="resume py-2">
+
+
+<!-- ========== Start Resume Section ========== -->
+
+
+<!-- Resume Section -->
+
+
+
+<!-- Resume Section -->
+<section id="resume" class="resume py-5 bg-light">
   <div class="container">
-    <div class="section-title">
-      <h2>Resume</h2>
+
+    <!-- Section Title -->
+    <div class="section-title text-center mb-4" data-aos="fade-down">
+      <h2 class="fw-bold section-heading">Resume</h2>
+      <p class="section-subtitle">
+        A well-crafted resume that highlights my <strong>technical expertise</strong>, 
+        <strong>academic journey</strong>, and <strong>professional projects</strong>.  
+        Explore to understand why I’m the right fit for your team.
+      </p>
     </div>
-    <iframe src="resume.html" width="100%" height="1200px" style="border:none;" title="Resume"></iframe>
+
+    <!-- Resume Button -->
+    <div class="text-center" data-aos="zoom-in">
+      <a href="resume.html" target="_blank" class="btn-custom btn-resume">
+        <i class="bi bi-file-person"></i> View My Resume
+      </a>
+    </div>
+
   </div>
 </section>
+
+<!-- Custom CSS (Same Theme as Notes & Skills Buttons) -->
+<style>
+/* Section Theme */
+.resume {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Heading */
+.section-heading {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #222;
+  position: relative;
+}
+.section-heading::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  background: linear-gradient(90deg, #36d1dc, #5b86e5);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  animation: underline 2s infinite alternate;
+}
+.section-subtitle {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #444;
+  text-align: justify;
+}
+
+/* Resume Button (same theme as Notes & Skills) */
+.btn-custom {
+  display: inline-block;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  animation: bounceBtn 2s infinite;
+}
+.btn-resume {
+  background: linear-gradient(135deg, #ff512f, #f09819); /* same as Skills button */
+  box-shadow: 0 8px 18px rgba(240, 152, 25, 0.4);
+}
+.btn-custom:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+}
+
+/* Animations */
+@keyframes underline {
+  from { width: 60px; }
+  to { width: 120px; }
+}
+@keyframes bounceBtn {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .section-heading { font-size: 1.8rem; }
+  .section-subtitle { font-size: 1rem; }
+  .btn-custom { font-size: 1rem; padding: 10px 24px; }
+}
+</style>
+
+
 <!-- ========== End Section Resume ========== -->
 
         <!-- ========== End Section Resume ========== -->
         <!-- ========== Start Section Project ========== -->
         <!-- ✅ Projects Section Start -->
-<section id="projects" class="py-16 bg-gray-50">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-10"> projects</h2>
-    <h2>project</h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Project Card 1 -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 flex flex-col">
-        <h3 class="text-xl font-semibold mb-2">Car Rental System</h3>
-        <p class="text-gray-600 mb-3">
-          A full-stack MERN car rental platform with authentication, booking, and payment integration.
-        </p>
-        <p class="text-sm text-gray-500 mb-4">
-          <strong>Tech:</strong> React, Node, Express, MongoDB
-        </p>
-        <div class="mt-auto flex gap-3">
-          <a href="https://carrentalfull-main.onrender.com/" target="_blank"
-             class="border border-gray-400 px-4 py-2 rounded-lg text-sm">Live Demo
-            
-          </a>
-          <a href="https://github.com/tarunpatidar2805/QuickAi" target="_blank"
-             class="border border-gray-400 px-4 py-2 rounded-lg text-sm">
-            GitHub
-          </a>
-        </div>
-      </div>
+<!-- ========== Start Projects Section ========== -->
 
-      <!-- Project Card 2 -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 flex flex-col">
-        <h3 class="text-xl font-semibold mb-2">QuickAI – AI Assistant</h3>
-        <p class="text-gray-600 mb-3">
-          Conversational AI web app that generates human-like responses and assists with tasks like notes & summaries.
-        </p>
-        <p class="text-sm text-gray-500 mb-4">
-          <strong>Tech:</strong> React, Node, Tailwind, OpenAI API
-        </p>
-        <div class="mt-auto flex gap-3">
-          <a href="https://github.com/tarunpatidar2805/QuickAi" target="_blank"
-             class="border border-gray-400 px-4 py-2 rounded-lg text-sm">
-            GitHub
-          </a>
-        </div>
-      </div>
 
-      <!-- Project Card 3 -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 flex flex-col">
-        <h3 class="text-xl font-semibold mb-2">QuickGPT – ChatGPT Clone</h3>
-        <p class="text-gray-600 mb-3">
-          An AI chatbot clone inspired by ChatGPT with Q&A, text generation, and interactive UI.
-        </p>
-        <p class="text-sm text-gray-500 mb-4">
-          <strong>Tech:</strong> React, Node, Express, OpenAI API
-        </p>
-        <div class="mt-auto flex gap-3">
-          <a href="https://github.com/tarunpatidar2805/QuickGpt" target="_blank"
-             class="border border-gray-400 px-4 py-2 rounded-lg text-sm">
-            GitHub
-          </a>
-        </div>
-      </div>
+<!-- Projects Section -->
 
-      <!-- Project Card 4 -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition p-6 flex flex-col">
-        <h3 class="text-xl font-semibold mb-2">My Calculator</h3>
-        <p class="text-gray-600 mb-3">
-          A modern responsive calculator web app with basic and advanced math operations.
-        </p>
-        <p class="text-sm text-gray-500 mb-4">
-          <strong>Tech:</strong> HTML, CSS, JavaScript
-        </p>
-        <div class="mt-auto flex gap-3">
-          <a href="https://github.com/tarunpatidar2805/myCalculator" target="_blank"
-             class="border border-gray-400 px-4 py-2 rounded-lg text-sm">
-            GitHub
-          </a>
-        </div>
-      </div>
-
+<section id="projects" class="projects py-5 bg-light">
+  <div class="container text-center">
+    <div class="section-title mb-4">
+      <h2 class="fw-bold section-heading">My Projects</h2>
+      <p class="section-subtitle">
+        Explore my <strong>real-world projects</strong> that highlight expertise in MERN Stack and JavaScript.
+      </p>
     </div>
+
+    <!-- Single Button (redirects to projects.html) -->
+    <a href="projects.html" class="btn-custom btn-projects">
+      <i class="bi bi-folder2-open"></i> View Projects
+    </a>
   </div>
 </section>
+
+<!-- CSS -->
+<style>
+.projects { font-family:'Times New Roman', Times, serif; }
+.section-heading { font-size:2rem;font-weight:bold;color:#222; }
+.section-subtitle { 
+  max-width:700px;
+  margin:auto;
+  font-size:1.1rem;
+  font-weight:bold;
+  color:#444;
+  text-align:justify; 
+}
+.btn-custom {
+  display:inline-block;
+  padding:12px 30px;
+  font-size:1rem;
+  font-weight:bold;
+  border-radius:30px;
+  text-decoration:none;
+  color:#fff;
+  transition:all 0.3s ease;
+  animation:bounceBtn 2s infinite;
+}
+.btn-projects {
+  background:linear-gradient(135deg,#36d1dc,#5b86e5);
+  box-shadow:0 6px 14px rgba(91,134,229,0.4);
+}
+.btn-custom:hover {
+  transform:scale(1.08);
+  box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+@keyframes bounceBtn {
+  0%,20%,50%,80%,100% {transform:translateY(0);}
+  40% {transform:translateY(-8px);}
+  60% {transform:translateY(-4px);}
+}
+</style>
+
+
 <!-- ✅ Projects Section End -->
 
         <!-- ========== End Section project========== -->
         <!-- ========== Start Section Services ========== -->
-       <section id="services" class="services py-2">
+       <section id="services" class="services py-5">
   <div class="container">
-    <div class="section-title">
-      <h2>Services</h2>
-      <p>As a Full Stack MERN Developer, I build scalable, responsive, and modern web applications.</p>
+    <div class="section-title text-center mb-5">
+      <h2 class="fw-bold">Services</h2>
+      <p class="text-muted">As a <strong>MERN Full Stack Developer</strong> with problem-solving expertise, I provide industry-relevant services that align with real-world projects and business needs.</p>
     </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-        <div class="icon"><i class="bi bi-code-slash"></i></div>
-        <h4 class="title"><a href="#">Web Development</a></h4>
-        <p>End-to-end development of dynamic web apps using MERN stack.</p>
+
+    <div class="row g-4">
+      <!-- MERN Full Stack Development -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box bounce delay-0">
+          <div class="icon icon-mern"><i class="bi bi-layers"></i></div>
+          <h4>MERN Full Stack Development</h4>
+          <p><strong>Frontend + Backend Expertise</strong> in React, Node.js, Express, and MongoDB to build scalable, responsive and secure applications widely used in industry and startups.</p>
+        </div>
       </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-delay="100">
-        <div class="icon"><i class="bi bi-laptop"></i></div>
-        <h4 class="title"><a href="#">Frontend Development</a></h4>
-        <p>Modern, responsive, and user-friendly UI with React, Redux, and Tailwind CSS.</p>
+
+      <!-- Problem Solving -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box bounce delay-1">
+          <div class="icon icon-problem"><i class="bi bi-lightbulb"></i></div>
+          <h4>Data Structures & Algorithms</h4>
+          <p>Strong <strong>problem-solving skills</strong> with a passion for optimizing solutions. Helps in <strong>real-world project performance, coding interviews, and efficient system design</strong>.</p>
+        </div>
       </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-delay="200">
-        <div class="icon"><i class="bi bi-hdd-network"></i></div>
-        <h4 class="title"><a href="#">Backend Development</a></h4>
-        <p>REST APIs, authentication, and server-side logic using Node.js & Express.</p>
+
+      <!-- Programming Languages -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box bounce delay-2">
+          <div class="icon icon-code"><i class="bi bi-code-slash"></i></div>
+          <h4>Programming Languages</h4>
+          <p>Proficiency in <strong>C++</strong> for system-level coding and competitive programming, and <strong>JavaScript</strong> for modern web application development.</p>
+        </div>
       </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-delay="300">
-        <div class="icon"><i class="bi bi-database"></i></div>
-        <h4 class="title"><a href="#">Database Management</a></h4>
-        <p>Designing and managing scalable databases with MongoDB.</p>
+
+      <!-- Database Management -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box bounce delay-3">
+          <div class="icon icon-db"><i class="bi bi-database"></i></div>
+          <h4>Database Management</h4>
+          <p>Experience with <strong>MongoDB</strong> (NoSQL) and <strong>SQL</strong> databases for designing, managing, and querying data in <strong>real-life applications, analytics and scalable platforms</strong>.</p>
+        </div>
       </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-delay="400">
-        <div class="icon"><i class="bi bi-cloud-upload"></i></div>
-        <h4 class="title"><a href="#">Deployment</a></h4>
-        <p>Deploying projects on Heroku, Vercel, Netlify, and cloud platforms.</p>
+
+      <!-- Productivity Tools -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box bounce delay-4">
+          <div class="icon icon-tools"><i class="bi bi-file-earmark-text"></i></div>
+          <h4>Productivity Tools</h4>
+          <p>Expertise in <strong>MS Word, PowerPoint, Excel & Advanced Excel</strong> for <strong>documentation, reporting, business analytics and data entry</strong> used in enterprises and project management.</p>
+        </div>
       </div>
-      <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-delay="500">
-        <div class="icon"><i class="bi bi-plug"></i></div>
-        <h4 class="title"><a href="#">API Integration</a></h4>
-        <p>Integration of third-party APIs and services to enhance functionality.</p>
+
+      <!-- API Integration & Deployment -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-box bounce delay-5">
+          <div class="icon icon-api"><i class="bi bi-cloud-upload"></i></div>
+          <h4>API Integration & Deployment</h4>
+          <p>Integrating <strong>third-party APIs</strong>, payment systems, and deploying apps on <strong>Netlify, Vercel, Heroku</strong>, and cloud servers to ensure <strong>production-ready delivery</strong>.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- CSS -->
+<style>
+.services {
+  font-family: 'Times New Roman', serif;
+}
+.section-title h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+.service-box {
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: justify;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.service-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+.service-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(91,134,229,0.25) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+.service-box:hover::after {
+  transform: scale(1);
+  opacity: 1;
+}
+.service-box .icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  animation: iconBounce 2s infinite;
+}
+
+/* 🔹 Colored Icons */
+.icon-mern { color: #5b86e5; }      /* Blue Gradient for MERN */
+.icon-problem { color: #f59e0b; }   /* Amber for Problem Solving */
+.icon-code { color: #e11d48; }      /* Pink-Red for Coding */
+.icon-db { color: #10b981; }        /* Green for Databases */
+.icon-tools { color: #6366f1; }     /* Indigo for Tools */
+.icon-api { color: #0ea5e9; }       /* Sky Blue for APIs */
+
+/* Headings */
+.service-box h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+.service-box p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* 🔹 Box Bounce Animation */
+.bounce {
+  animation: boxBounce 3s infinite;
+}
+@keyframes boxBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 🔹 Staggered Delays (Wave Effect) */
+.delay-0 { animation-delay: 0s; }
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+.delay-3 { animation-delay: 0.9s; }
+.delay-4 { animation-delay: 1.2s; }
+.delay-5 { animation-delay: 1.5s; }
+
+/* 🔹 Icon Bounce */
+@keyframes iconBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+</style>
+
 
         <!-- ========== End Section Services ========== -->
         <!-- ========== Start Section certificates section  ========== -->
@@ -467,27 +987,44 @@
 <!-- Contact Section -->
 <section id="contact" class="py-5 bg-light">
   <div class="container">
-    <h2 class="text-center mb-4">Contact Us</h2>
-    <p class="text-center mb-5">Fill out the form and we’ll get back to you soon.</p>
+    <h2 class="text-center mb-4 fw-bold text-primary animate__animated animate__fadeInDown">
+      Contact Me
+    </h2>
+    <p class="text-center mb-5 text-muted animate__animated animate__fadeInUp">
+      Fill out the form and I’ll get back to you soon 🚀
+    </p>
 
-    <form id="contactForm" class="p-4 shadow rounded bg-white animate__animated animate__fadeInUp">
+    <form id="contactForm" class="p-4 shadow-lg rounded bg-white animate__animated animate__zoomIn">
       <div class="row g-3">
+        
         <!-- Name -->
-        <div class="col-md-6">
-          <label class="form-label">Name</label>
-          <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Name</label>
+          <input type="text" id="name" name="name" class="form-control form-control-lg animated-input" placeholder="Enter your name" required>
         </div>
 
         <!-- Email -->
-        <div class="col-md-6">
-          <label class="form-label">Email</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Email</label>
+          <input type="email" id="email" name="email" class="form-control form-control-lg animated-input" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Address -->
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Address</label>
+          <input type="text" id="address" name="address" class="form-control form-control-lg animated-input" placeholder="Enter your address" required>
+        </div>
+
+        <!-- Pincode -->
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Pincode</label>
+          <input type="text" id="pincode" name="pincode" class="form-control form-control-lg animated-input" placeholder="Enter your pincode" required>
         </div>
 
         <!-- Education -->
-        <div class="col-md-6">
-          <label class="form-label">Education</label>
-          <select id="education" name="education" class="form-select" required>
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Education</label>
+          <select id="education" name="education" class="form-select form-select-lg animated-input" required>
             <option value="">Select Education</option>
             <option value="High School">High School</option>
             <option value="Graduation">Graduation</option>
@@ -497,9 +1034,9 @@
         </div>
 
         <!-- Profession -->
-        <div class="col-md-6">
-          <label class="form-label">Profession</label>
-          <select id="profession" name="profession" class="form-select" required>
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Profession</label>
+          <select id="profession" name="profession" class="form-select form-select-lg animated-input" required>
             <option value="">Select Profession</option>
             <option value="Student">Student</option>
             <option value="Developer">Developer</option>
@@ -509,81 +1046,248 @@
         </div>
 
         <!-- WhatsApp -->
-        <div class="col-md-6">
-          <label class="form-label">WhatsApp</label>
-          <input type="text" id="whatsapp" name="whatsapp" class="form-control" placeholder="+91 XXXXX XXXXX" required>
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">WhatsApp</label>
+          <input type="text" id="whatsapp" name="whatsapp" class="form-control form-control-lg animated-input" placeholder="+91 XXXXX XXXXX" required>
         </div>
 
         <!-- Other -->
-        <div class="col-md-6">
-          <label class="form-label">Other</label>
-          <input type="text" id="other" name="other" class="form-control" placeholder="Other details (if any)">
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-bold">Other</label>
+          <input type="text" id="other" name="other" class="form-control form-control-lg animated-input" placeholder="Other details (if any)">
         </div>
 
         <!-- Description -->
         <div class="col-12">
-          <label class="form-label">Description</label>
-          <textarea id="description" name="description" rows="4" class="form-control" placeholder="Write your message here..." required></textarea>
+          <label class="form-label fw-bold">Message</label>
+          <textarea id="description" name="description" rows="4" class="form-control form-control-lg animated-input" placeholder="Write your message here..." required></textarea>
         </div>
 
         <!-- Submit -->
         <div class="col-12 text-center">
-          <button type="submit" id="submitBtn" class="btn btn-primary px-5 py-2 mt-3 shadow">
-            Send Message
+          <button type="submit" id="submitBtn" class="btn-submit mt-3">
+            🚀 Send Message
           </button>
+          <!-- Progress bar -->
+          <div class="progress mt-3" style="height:8px; display:none;" id="progressBarContainer">
+            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:0%"></div>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </section>
 
+<!-- CSS -->
+<style>
+/* Input animations */
+.animated-input {
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+.animated-input:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 12px rgba(106,17,203,0.3);
+  transform: scale(1.02);
+}
+
+/* Stylish Submit Button */
+.btn-submit {
+  background: linear-gradient(135deg, #ff0080, #ff8c00, #40e0d0);
+  background-size: 300% 300%;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  animation: bounceBtn 2s infinite, gradientMove 6s ease infinite;
+}
+.btn-submit.success {
+  background: linear-gradient(135deg, #00c853, #4caf50);
+  animation: none;
+}
+.btn-submit:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+/* Bouncing animation */
+@keyframes bounceBtn {
+  0%,20%,50%,80%,100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+  .form-control-lg, .form-select-lg {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .btn-submit {
+    font-size: 1rem;
+    padding: 10px 30px;
+  }
+}
+</style>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Confetti Script -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const btn = document.getElementById("submitBtn");
+  const progressBar = document.getElementById("progressBar");
+  const progressBarContainer = document.getElementById("progressBarContainer");
+
+  // Show progress bar
+  progressBarContainer.style.display = "block";
+  progressBar.style.width = "0%";
+
+  btn.disabled = true;
+  btn.innerHTML = "⏳ Sending...";
+
+  let progress = 0;
+  const interval = setInterval(()=>{
+    if(progress >= 100){
+      clearInterval(interval);
+
+      // Trigger Confetti 🎉
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+
+      // Success State
+      btn.classList.add("success");
+      btn.innerHTML = "✅ Sent Successfully";
+
+      setTimeout(()=>{
+        btn.classList.remove("success");
+        btn.disabled = false;
+        btn.innerHTML = "🚀 Send Message";
+        progressBarContainer.style.display = "none";
+        document.getElementById("contactForm").reset();
+      }, 3000);
+
+    } else {
+      progress += 10;
+      progressBar.style.width = progress + "%";
+    }
+  }, 200); // speed of progress bar
+});
+</script>
 
 
         <!-- ========== End Section Contact ========== -->
     </main>
     <!-- ========== End Main Area ========== -->
     <!-- ========== Start Section Footer ========== -->
-    <footer id="footer">
-        <div class="container">
-            <div class="text-center fw-bold">
-                <p>&copy; 2025</p>
-                <p>Tarun Patidar</p>
-            </div>
-        </div>
-    </footer>
-    <!-- ========== End Section Footer ========== -->
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center " title="Back To Top">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-    <!-- vender JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" ></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.2.0/swiper-bundle.min.js"></script>
-    <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="js/code.js"></script>
-    <script src="js/form.js"></script>
 
-    <script>
-      
-      
-        let typed=new Typed('#typed',
-        {
-            strings:['Software Engineer','Full-Stack MERN Developer','Prorammer' ,'Mathematical Problem Solver'],
-            typeSpeed:100,
-            loop:true,
-            backSpeed:50,
-            backDelay:2000
-        });
-        AOS.init({
-            duration:1000,
-            easing:'ease-in-out',
-            once:true,
-            mirror:false
-        })
-    </script>
-</body>
+<!-- Contact Banner Section -->
+<!-- Contact Banner Section -->
+<section id="contact-banner" class="py-5">
+  <div class="container text-center text-white">
+    <h2 class="banner-heading animate__animated animate__pulse animate__infinite">
+      🎉 Thanks for visiting our web app!
+    </h2>
+    <h3 class="gradient-text mt-3">
+      <span id="typed-banner"></span>
+    </h3>
+    <p class="lead mt-3 animate__animated animate__fadeInUp">
+      Feel free to scroll up and fill the contact form above 👆 — I’ll get back to you soon 🚀
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+
+
+<!-- Back to top -->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center" title="Back To Top">
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- CSS -->
+<style>
+#contact-banner {
+  background: linear-gradient(135deg, #6a11cb, #8e44ad, #9b59b6);
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+  color: #fff;
+  width: 100%;
+}
+.banner-heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+.gradient-text {
+  background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #00ff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  font-size: 1.8rem;
+  display: inline-block;
+}
+/* Blinking glowing cursor */
+.typed-cursor {
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+</style>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+
+<!-- Typing Animation -->
+<script>
+  new Typed("#typed-banner", {
+    strings: [
+      "💡 How can I help you?",
+      "🚀 Need a Full-Stack Developer?",
+      "📩 Let’s connect today!"
+    ],
+    typeSpeed: 70,
+    backSpeed: 40,
+    backDelay: 2000,
+    loop: true,
+    showCursor: true,
+    cursorChar: "|"
+  });
+</script>
+
+
+
+    </body>
 </html>

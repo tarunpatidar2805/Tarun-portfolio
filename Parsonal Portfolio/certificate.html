@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificates - Tarun Patidar</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body { background: #f8f9fa; font-family: 'Poppins', sans-serif; }
+
+    /* Banner */
+    .top-banner {
+      text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      margin-bottom: 40px;
+      animation: fadeInDown 1.2s ease;
+    }
+    .top-banner h1 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .top-banner p {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* Cards */
+    .card { transition: all 0.3s ease; border-radius: 12px; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .card iframe { border: none; height: 220px; width: 100%; border-radius: 12px 12px 0 0; }
+
+    /* Pagination */
+    .pagination { justify-content: center; }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <h1>🚀 Welcome to Code with Tarun Patidar Web App</h1>
+    <p>Explore my verified <b>Certificates & Achievements</b>.  
+       Click below to view them and know more about my journey.</p>
+  </div>
+
+  <!-- Certificates Section -->
+  <div class="container">
+    <div class="row" id="certificates-container"></div>
+
+    <!-- Pagination -->
+    <nav>
+      <ul class="pagination mt-4" id="pagination"></ul>
+    </nav>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Script -->
+  <script>
+    // 🏆 Certificates Data (Google Drive IDs डालो)
+    const certificates = [
+      { title: "Full-Stack Web Development", desc: "Issued by XYZ Academy - 2024", id: "1a2B3cD4EfGhIjKlMnOpQrStUvWxYz" },
+      { title: "Python Programming", desc: "Issued by ABC Institute - 2023", id: "2xYz3wQrTuVbN7pLmNoPqRsT1aBcDe" },
+      { title: "Data Structures & Algorithms", desc: "Issued by Code Academy - 2022", id: "3rStUvWxYz1a2B3cD4EfGhIjKlMnOpQ" },
+      { title: "Cloud Computing", desc: "Issued by AWS Academy - 2024", id: "4hIjKlMnOpQrStUvWxYz1a2B3cD4EfGh" },
+      { title: "Cyber Security", desc: "Issued by Cisco - 2023", id: "5MnOpQrStUvWxYz1a2B3cD4EfGhIjKlN" },
+      { title: "Machine Learning", desc: "Issued by Coursera - 2022", id: "6OpQrStUvWxYz1a2B3cD4EfGhIjKlMnN" },
+      { title: "AI for Everyone", desc: "Issued by DeepLearning.ai - 2023", id: "7QrStUvWxYz1a2B3cD4EfGhIjKlMnOpR" },
+      { title: "Java Development", desc: "Issued by Oracle - 2024", id: "8StUvWxYz1a2B3cD4EfGhIjKlMnOpQrS" },
+      { title: "Linux Fundamentals", desc: "Issued by RedHat - 2023", id: "9UvWxYz1a2B3cD4EfGhIjKlMnOpQrStU" }
+    ];
+
+    const perPage = 6;
+    let currentPage = 1;
+
+    function renderCertificates(page = 1) {
+      const start = (page - 1) * perPage;
+      const end = start + perPage;
+      const certsToShow = certificates.slice(start, end);
+
+      const container = document.getElementById("certificates-container");
+      container.innerHTML = "";
+
+      certsToShow.forEach(cert => {
+        const previewLink = `https://drive.google.com/file/d/${cert.id}/preview`;
+        const downloadLink = `https://drive.google.com/uc?export=download&id=${cert.id}`;
+
+        container.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+              <iframe src="${previewLink}" allow="autoplay"></iframe>
+              <div class="card-body">
+                <h5 class="card-title">${cert.title}</h5>
+                <p class="card-text">${cert.desc}</p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="${previewLink}" target="_blank" class="btn btn-sm btn-primary me-2">
+                  <i class="bi bi-eye"></i> View
+                </a>
+                <a href="${downloadLink}" class="btn btn-sm btn-success">
+                  <i class="bi bi-download"></i> Download
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      renderPagination(page);
+    }
+
+    function renderPagination(page) {
+      const totalPages = Math.ceil(certificates.length / perPage);
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.innerHTML += `
+          <li class="page-item ${i === page ? "active" : ""}">
+            <a class="page-link" href="#">${i}</a>
+          </li>
+        `;
+      }
+
+      document.querySelectorAll(".page-link").forEach((btn, i) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          currentPage = i + 1;
+          renderCertificates(currentPage);
+        });
+      });
+    }
+
+    // Init
+    renderCertificates(currentPage);
+  </script>
+</body>
+</html>

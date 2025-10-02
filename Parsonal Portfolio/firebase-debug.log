@@ -1,0 +1,118 @@
+[debug] [2025-10-02T06:47:48.628Z] ----------------------------------------------------------------------
+[debug] [2025-10-02T06:47:48.630Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\tarun\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2025-10-02T06:47:48.631Z] CLI Version:   14.17.0
+[debug] [2025-10-02T06:47:48.631Z] Platform:      win32
+[debug] [2025-10-02T06:47:48.631Z] Node Version:  v22.16.0
+[debug] [2025-10-02T06:47:48.631Z] Time:          Thu Oct 02 2025 12:17:48 GMT+0530 (India Standard Time)
+[debug] [2025-10-02T06:47:48.631Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-02T06:47:48.636Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-02T06:47:48.636Z] > authorizing via signed-in user (tarunpatidarrupariya@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Tarun portfolio\Parsonal Portfolio
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-10-02T06:48:29.597Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:48:29.598Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:48:29.601Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-10-02T06:48:29.601Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"tarunotp"}
+[debug] [2025-10-02T06:48:30.419Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-10-02T06:48:30.419Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"tarunotp-dcb5e"}
+[debug] [2025-10-02T06:48:47.709Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:48:47.710Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:48:47.711Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-10-02T06:48:47.711Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"tarunotp"}
+[debug] [2025-10-02T06:48:49.398Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-10-02T06:48:49.398Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"tarunotp-9d521"}
+[debug] [2025-10-02T06:48:55.248Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:48:55.248Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:48:55.250Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-10-02T06:48:55.250Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"tarunotp-dcb5e."}
+[debug] [2025-10-02T06:48:55.810Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 400
+[debug] [2025-10-02T06:48:55.810Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT"}}
+[debug] [2025-10-02T06:48:55.812Z] Couldn't check if project ID tarunotp-dcb5e. is available. Original error: FirebaseError: Failed to check if project ID is available. See firebase-debug.log for more info.
+[debug] [2025-10-02T06:50:23.415Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:50:23.415Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:50:23.415Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-10-02T06:50:23.415Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"tarunotp-dcb5e.","name":"tarun2805"}
+[debug] [2025-10-02T06:50:25.036Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2025-10-02T06:50:25.036Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id contains invalid characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2025-10-02T06:50:25.325Z] FirebaseError: Request to https://cloudresourcemanager.googleapis.com/v1/projects had HTTP Error: 400, field [project_id] has issue [project_id contains invalid characters]
+    at responseToError (C:\Users\tarun\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\tarun\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2025-10-02T06:51:35.735Z] ----------------------------------------------------------------------
+[debug] [2025-10-02T06:51:35.737Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\tarun\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2025-10-02T06:51:35.738Z] CLI Version:   14.17.0
+[debug] [2025-10-02T06:51:35.738Z] Platform:      win32
+[debug] [2025-10-02T06:51:35.738Z] Node Version:  v22.16.0
+[debug] [2025-10-02T06:51:35.738Z] Time:          Thu Oct 02 2025 12:21:35 GMT+0530 (India Standard Time)
+[debug] [2025-10-02T06:51:35.738Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-02T06:51:35.743Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-02T06:51:35.743Z] > authorizing via signed-in user (tarunpatidarrupariya@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Tarun portfolio\Parsonal Portfolio
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-10-02T06:51:58.586Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:51:58.586Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:51:58.590Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-10-02T06:51:58.590Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"patidarotp"}
+[debug] [2025-10-02T06:51:59.288Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-10-02T06:51:59.288Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_AVAILABLE","suggestedProjectId":"patidarotp"}
+[debug] [2025-10-02T06:52:06.854Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:52:06.854Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:52:06.854Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-10-02T06:52:06.855Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"patidarotp","name":"tarunotp-dcb5e"}
+[debug] [2025-10-02T06:52:08.653Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2025-10-02T06:52:08.654Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.6117510334112387748"}
+[debug] [2025-10-02T06:52:08.654Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:52:08.655Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:52:08.655Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6117510334112387748 [none]
+[debug] [2025-10-02T06:52:10.111Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6117510334112387748 200
+[debug] [2025-10-02T06:52:10.111Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.6117510334112387748 {"name":"operations/create_project.global.6117510334112387748","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"1024845314557","projectId":"patidarotp","lifecycleState":"ACTIVE","name":"tarunotp-dcb5e","createTime":"2025-10-02T06:52:08.829429Z"}}
+[debug] [2025-10-02T06:52:10.115Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:52:10.115Z] Checked if tokens are valid: true, expires at: 1759390475026
+[debug] [2025-10-02T06:52:10.115Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/patidarotp:addFirebase [none]
+[debug] [2025-10-02T06:52:11.767Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/patidarotp:addFirebase 403
+[debug] [2025-10-02T06:52:11.768Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/patidarotp:addFirebase {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2025-10-02T06:52:11.769Z] Request to https://firebase.googleapis.com/v1beta1/projects/patidarotp:addFirebase had HTTP Error: 403, The caller does not have permission
+[debug] [2025-10-02T06:52:12.036Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/patidarotp:addFirebase had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\tarun\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\tarun\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Projects</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.6s ease;
+      background: #f9f9f9;
+    }
+    .section-heading {
+      font-size: 2.2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 25px;
+      animation: bounce 2s infinite;
+      background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-12px);}
+    }
+    .project-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      width: 200px;
+      height: 350px;
+      margin: auto;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: cardBounce 3s infinite;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .project-card img {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+    .btn-inner {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #fff;
+      background: #007bff;
+      text-decoration: none;
+    }
+    .btn-inner:hover { background: #0056b3; }
+    @keyframes cardBounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-5px);}
+    }
+    .search-bar { max-width: 400px; margin: 0 auto 25px; }
+
+    /* Tech Modal */
+    .tech-modal {
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(75,0,130,0.95);
+      color:#fff;
+      display:none;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      z-index:9999;
+      animation: modalBounce 0.7s ease;
+      text-align: center;
+    }
+    .tech-modal h3 { font-size:2rem; margin-bottom:15px; }
+    .tech-modal ul { list-style:none; padding:0; }
+    .tech-modal li { margin:8px 0; font-size:1.1rem; }
+    .tech-modal button {
+      margin-top:20px;
+      padding:8px 18px;
+      border:none;
+      border-radius:8px;
+      background:#ff4da6;
+      color:#fff;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    @keyframes modalBounce {
+      0% { transform:scale(0.7); opacity:0; }
+      60% { transform:scale(1.1); opacity:1; }
+      100% { transform:scale(1); }
+    }
+    /* Bouncing glowing icon */
+    .tech-icon {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff3399;
+      animation: iconBounce 1.5s infinite;
+    }
+    @keyframes iconBounce {
+      0%,100% { transform: translateY(0);}
+      50% { transform: translateY(-12px);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h2 class="section-heading">Welcome to Code with Tarun Patidar</h2>
+
+    <!-- Background toggle + search -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+      <input type="text" id="searchBox" class="form-control search-bar" placeholder="Search projects...">
+      <button id="bgToggle" class="btn btn-success">Toggle Background</button>
+    </div>
+
+    <div class="row g-4 justify-content-center" id="projectContainer"></div>
+  </div>
+
+  <!-- Tech Modal -->
+  <div class="tech-modal" id="techModal">
+    <div class="tech-icon">💻</div>
+    <h3 id="techTitle"></h3>
+    <ul id="techList"></ul>
+    <button onclick="$('#techModal').fadeOut()">Close</button>
+  </div>
+
+<script>
+  // Projects data
+  const projects = [
+    {name:"Age Calculator", tech:["HTML","CSS","JavaScript"]},
+    {name:"Calculator", tech:["HTML","CSS","JavaScript"]},
+    {name:"Crypto Webpage", tech:["HTML","CSS","API","Bootstrap"]},
+    {name:"Daily Quote", tech:["HTML","CSS","JavaScript","API"]},
+    {name:"Dark Theme Local Storage", tech:["HTML","CSS","JS LocalStorage"]},
+    {name:"Demo", tech:["HTML","CSS","Bootstrap"]},
+    {name:"Digital Clock", tech:["HTML","CSS","JavaScript"]},
+    {name:"Drag & Drop", tech:["HTML5 DragDrop API","JavaScript"]},
+    {name:"Email Subscription", tech:["HTML","CSS","JavaScript"]},
+    {name:"H Scroll Slider", tech:["HTML","CSS","JavaScript","jQuery"]},
+    {name:"Image Search", tech:["HTML","CSS","JavaScript","API"]},
+    {name:"Launching Soon", tech:["HTML","CSS","Bootstrap"]},
+    {name:"Mini Calendar", tech:["HTML","CSS","JavaScript"]},
+    {name:"Music Player", tech:["HTML","CSS","JavaScript","Audio API"]},
+    {name:"Notes App", tech:["HTML","CSS","JavaScript","LocalStorage"]},
+    {name:"Password", tech:["HTML","CSS","JavaScript"]},
+    {name:"Password Generator", tech:["HTML","CSS","JavaScript"]},
+    {name:"Popup", tech:["HTML","CSS","JavaScript"]},
+    {name:"Product Page", tech:["HTML","CSS","Bootstrap"]},
+    {name:"Progress Bar", tech:["HTML","CSS","JavaScript"]},
+    {name:"QR Code", tech:["HTML","CSS","JavaScript","API"]},
+    {name:"Quiz App", tech:["HTML","CSS","JavaScript"]},
+    {name:"Select Menu", tech:["HTML","CSS","JavaScript"]},
+    {name:"Stopwatch", tech:["HTML","CSS","JavaScript"]},
+    {name:"Text to Speech", tech:["HTML","CSS","JavaScript","Speech API"]},
+    {name:"Toast Notification", tech:["HTML","CSS","JavaScript"]},
+    {name:"To Do List", tech:["HTML","CSS","JavaScript"]},
+    {name:"Toggle Password", tech:["HTML","CSS","JavaScript"]},
+    {name:"Transparent Background", tech:["HTML","CSS"]},
+    {name:"Validation & Weather App", tech:["HTML","CSS","JavaScript","API"]}
+  ];
+
+  // Generate cards
+  function renderProjects(filter="") {
+    const container = $("#projectContainer");
+    container.html("");
+    projects.forEach((proj) => {
+      if(proj.name.toLowerCase().includes(filter.toLowerCase())) {
+        container.append(`
+          <div class="col-md-3">
+            <div class="project-card text-center">
+              <img src="https://via.placeholder.com/200x200.png?text=${proj.name.replace(/\\s+/g,'+')}" alt="${proj.name}">
+              <h5>${proj.name}</h5>
+              <p class="small">Professional project: ${proj.name}, designed with clean UI/UX to impress recruiters.</p>
+              <div class="d-flex justify-content-center gap-2 flex-wrap mt-2">
+                <a href="https://github.com/tarunpatidar2805/${proj.name.replace(/\\s+/g,'-').toLowerCase()}" target="_blank" class="btn-inner">GitHub</a>
+                <a href="#" target="_blank" class="btn-inner bg-success">Demo</a>
+                <button class="btn-inner" style="background:#6f42c1" onclick="showTech('${proj.name}')">View Tech</button>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+    });
+  }
+  renderProjects();
+
+  // Search filter
+  $("#searchBox").on("keyup", function(){
+    renderProjects(this.value);
+  });
+
+  // Background toggle
+  const bgs = [
+    "linear-gradient(to right, #ffffff, #f9f9f9)",
+    "linear-gradient(to right, #87cefa, #e0f7fa)",
+    "linear-gradient(to right, #fdfbfb, #ebedee)"
+  ];
+  let bgIndex = 0;
+  $("#bgToggle").on("click", function(){
+    bgIndex = (bgIndex+1)%bgs.length;
+    $("body").css("background", bgs[bgIndex]);
+  });
+
+  // Show Tech modal
+  function showTech(name){
+    const proj = projects.find(p=>p.name===name);
+    $("#techTitle").text(name+" Technologies");
+    $("#techList").html(proj.tech.map(t=>`<li>💡 ${t}</li>`).join(''));
+    $("#techModal").fadeIn();
+  }
+</script>
+</body>
+</html>
