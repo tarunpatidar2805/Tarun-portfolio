@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,50 +34,27 @@
 
 
 
-
-<!-- ========== Start Section Header ========== -->
-
 <body>
   
 
-    <!-- ========== Start Mobile Nav Toggle Buttun ========== -->
-    <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
-    <!-- ========== End Mobile Nav Toggle Buttun ========== -->
-    <!-- ========== Start Section Header  side bar slim ========== -->
-    
+
 <!-- ========== Start Section Header ========== -->
-<!-- ========== Start Section Header ========== -->
-<!-- ========== Start Section Header ========== -->
-<!-- ========== Start Section Header ========== -->
-<!-- Mobile Toggle Button -->
-<!-- Mobile Toggle Button -->
-<!-- Mobile Toggle Button -->
+  
+<!-- ✅ Mobile Nav Toggle Btn -->
 <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
 
 <!-- Sidebar -->
-<header id="header"> <!-- Slim Sidebar -->
+<header id="header">
   <div class="d-flex flex-column text-center">
-
-    <!-- Profile -->
     <div class="profile py-3">
       <img src="img/profile-img.jpg" alt="Tarun Patidar" class="profile-img">
       <h1 class="text-light mt-2 fs-6">Tarun Patidar</h1>
-
-      <!-- Social links -->
       <div class="social-links mt-3">
-        <a href="https://www.instagram.com/tarunpatidar48" target="_blank" class="instagram" title="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=100082160439292" target="_blank" class="facebook" title="Facebook">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank" class="linkedin" title="LinkedIn">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
+        <a href="https://www.instagram.com/tarunpatidar48" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100082160439292" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.linkedin.com/in/tarun-patidar-170a8926b" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
       </div>
     </div>
-
-    <!-- Nav Menu -->
     <nav id="navbar" class="navbar nav-menu mt-4">
       <ul>
         <li><a href="#hero" class="nav-link scrollto active"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
@@ -91,39 +69,71 @@
   </div>
 </header>
 
-<!-- Background Overlay -->
+<!-- Overlay -->
 <div id="overlay"></div>
 
-<!-- JS -->
+<!-- ✅ Hero Section -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center"
+  style="
+    width: 100%;
+    height: 100vh;
+    background: url('img/profile-img.jpg') center center / contain no-repeat;
+    background-color: blanchedalmond;
+    position: relative;
+    color: #000;
+    text-align: center;
+  ">
+  <div class="hero-container" data-aos="fade-in">
+    <h1>Tarun Patidar</h1>
+    <p>I'm <span class="typing"></span></p>
+  </div>
+</section>
+
+<!-- ✅ JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
 <script>
+  // Sidebar Toggle
   const toggleBtn = document.querySelector('.mobile-nav-toggle');
   const sidebar = document.getElementById('header');
   const overlay = document.getElementById('overlay');
 
-  // Sidebar Toggle
   toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
     overlay.classList.toggle('active');
   });
 
-  // Close when clicking outside
   overlay.addEventListener('click', () => {
     sidebar.classList.remove('open');
     overlay.classList.remove('active');
   });
 
-  // Close sidebar on nav click
   document.querySelectorAll('.scrollto').forEach(link => {
     link.addEventListener('click', () => {
       sidebar.classList.remove('open');
       overlay.classList.remove('active');
     });
   });
+
+  // Typed.js Effect
+  document.addEventListener("DOMContentLoaded", function () {
+    new Typed(".typing", {
+      strings: [
+        "a Software Engineer",
+        "a Developer",
+        "a MERN Stack Specialist",
+        "a Problem Solver"
+      ],
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 1200,
+      loop: true
+    });
+  });
 </script>
 
-<!-- CSS -->
+<!-- ✅ CSS -->
 <style>
-/* Sidebar Base */
+/* Sidebar */
 #header {
   background: #111;
   position: fixed;
@@ -131,22 +141,17 @@
   left: 0;
   height: 100vh;
   width: 220px;
-  overflow-y: auto;
   z-index: 999;
-  padding-bottom: 20px;
-  transition: transform 0.4s ease-in-out; /* smooth slide */
+  overflow-y: auto;
+  transition: transform 0.4s ease-in-out;
 }
-
-/* Sidebar Hidden by Default (Mobile) */
 @media (max-width: 991px) {
   #header {
-    transform: translateX(-100%); /* hide offscreen left */
+    transform: translateX(-100%);
   }
   #header.open {
-    transform: translateX(0); /* slide in */
+    transform: translateX(0);
   }
-
-  /* Blue Toggle Button */
   .mobile-nav-toggle {
     position: fixed;
     right: 20px;
@@ -160,59 +165,24 @@
     cursor: pointer;
   }
 }
-
-/* Overlay */
 #overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.6);
   display: none;
   z-index: 998;
 }
-#overlay.active {
-  display: block;
-}
-
-/* Profile Image */
+#overlay.active { display: block; }
 .profile-img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
+  width: 80px; height: 80px;
   border-radius: 50%;
   border: 3px solid #fff;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  animation: bounceProfile 2s infinite;
-}
-@keyframes bounceProfile {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
+  object-fit: cover;
 }
 </style>
 
-    <!-- ========== End Section Header  side bar slim ========== -->
-    <!-- ========== Start Section Hero ========== -->
-   <section id="hero" class="d-flex flex-column justify-content-center align-items-center"
-    style="
-        width: 100%;
-        height: 100vh;
-        background: url('img/profile-img.jpg') center center / contain no-repeat;
-        background-color: #000; /* empty area fill karega */
-        position: relative;
-        color: #fff;
-        text-align: center;
-        background-color:blanchedalmond;
-    ">
+    <!-- ========== Start Mobile Nav Toggle Buttun ========== -->
     
-    <div class="hero-container" data-aos="fade-in">
-        <h1>Tarun Patidar</h1>
-        <p>I'm <span id="typed"></span></p>
-    </div>
-</section>
-
 
     <!-- ========== End Section Hero ========== -->
     <!-- ========== Start Main Area ========== -->
@@ -220,10 +190,10 @@
         <!-- ========== Start Section About ========== -->
        
 
-<!-- About Section -->
 
 
-<!-- About Section -->
+
+<!-- About Section start -->
 
 <section id="about" class="about py-5">
   <div class="container">
@@ -1041,53 +1011,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <!-- Confetti Script -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script>
-document.getElementById("contactForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const btn = document.getElementById("submitBtn");
-  const progressBar = document.getElementById("progressBar");
-  const progressBarContainer = document.getElementById("progressBarContainer");
-
-  // Show progress bar
-  progressBarContainer.style.display = "block";
-  progressBar.style.width = "0%";
-
-  btn.disabled = true;
-  btn.innerHTML = "⏳ Sending...";
-
-  let progress = 0;
-  const interval = setInterval(()=>{
-    if(progress >= 100){
-      clearInterval(interval);
-
-      // Trigger Confetti 🎉
-      confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-
-      // Success State
-      btn.classList.add("success");
-      btn.innerHTML = "✅ Sent Successfully";
-
-      setTimeout(()=>{
-        btn.classList.remove("success");
-        btn.disabled = false;
-        btn.innerHTML = "🚀 Send Message";
-        progressBarContainer.style.display = "none";
-        document.getElementById("contactForm").reset();
-      }, 3000);
-
-    } else {
-      progress += 10;
-      progressBar.style.width = progress + "%";
-    }
-  }, 200); // speed of progress bar
-});
-</script>
 
 
         <!-- ========== End Section Contact ========== -->
@@ -1163,8 +1086,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
 <!-- Animate.css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <!-- Typed.js -->
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
 <!-- Typing Animation -->
 <script>
   new Typed("#typed-banner", {
@@ -1182,6 +1104,81 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
   });
 </script>
 
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const btn = document.getElementById("submitBtn");
+  const progressBar = document.getElementById("progressBar");
+  const progressBarContainer = document.getElementById("progressBarContainer");
+
+  btn.disabled = true;
+  btn.innerHTML = "⏳ Sending...";
+  progressBarContainer.style.display = "block";
+  progressBar.style.width = "0%";
+
+  const formData = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    address: document.getElementById("address").value,
+    pincode: document.getElementById("pincode").value,
+    education: document.getElementById("education").value,
+    profession: document.getElementById("profession").value,
+    whatsapp: document.getElementById("whatsapp").value,
+    other: document.getElementById("other").value,
+    description: document.getElementById("description").value
+  };
+
+  try {
+    const API_URL = "https://tarun-portfolio2.onrender.com"; 
+
+    // ✅ FIXED: res ko assign karna zaruri hai
+    const res = await fetch(`${API_URL}/api/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      let progress = 0;
+      const interval = setInterval(() => {
+        if (progress >= 100) {
+          clearInterval(interval);
+
+          confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+
+          btn.innerHTML = "✅ Sent Successfully";
+          btn.classList.add("success");
+
+          setTimeout(() => {
+            btn.innerHTML = "🚀 Send Message";
+            btn.classList.remove("success");
+            btn.disabled = false;
+            progressBarContainer.style.display = "none";
+            document.getElementById("contactForm").reset();
+          }, 3000);
+        } else {
+          progress += 10;
+          progressBar.style.width = progress + "%";
+        }
+      }, 200);
+    } else {
+      throw new Error("❌ Server responded with error");
+    }
+  } catch (err) {
+    console.error("❌ Request error:", err);
+    alert("⚠️ Could not connect to server");
+    btn.innerHTML = "🚀 Send Message";
+    btn.disabled = false;
+    progressBarContainer.style.display = "none";
+  }
+});
+</script>
 
 
     </body>
