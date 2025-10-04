@@ -31,8 +31,8 @@
       border-radius: 15px;
       padding: 15px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-      width: 200px;
-      height: 350px;
+      width: 220px;
+      height: 360px;
       margin: auto;
       transition: transform 0.3s, box-shadow 0.3s;
       animation: cardBounce 3s infinite;
@@ -97,7 +97,6 @@
       60% { transform:scale(1.1); opacity:1; }
       100% { transform:scale(1); }
     }
-    /* Bouncing glowing icon */
     .tech-icon {
       font-size: 3rem;
       margin-bottom: 10px;
@@ -115,7 +114,6 @@
   <div class="container py-5">
     <h2 class="section-heading">Welcome to Code with Tarun Patidar</h2>
 
-    <!-- Background toggle + search -->
     <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
       <input type="text" id="searchBox" class="form-control search-bar" placeholder="Search projects...">
       <button id="bgToggle" class="btn btn-success">Toggle Background</button>
@@ -133,89 +131,67 @@
   </div>
 
 <script>
-  // Projects data
-  const projects = [
-    {name:"Age Calculator", tech:["HTML","CSS","JavaScript"]},
-    {name:"Calculator", tech:["HTML","CSS","JavaScript"]},
-    {name:"Crypto Webpage", tech:["HTML","CSS","API","Bootstrap"]},
-    {name:"Daily Quote", tech:["HTML","CSS","JavaScript","API"]},
-    {name:"Dark Theme Local Storage", tech:["HTML","CSS","JS LocalStorage"]},
-    {name:"Demo", tech:["HTML","CSS","Bootstrap"]},
-    {name:"Digital Clock", tech:["HTML","CSS","JavaScript"]},
-    {name:"Drag & Drop", tech:["HTML5 DragDrop API","JavaScript"]},
-    {name:"Email Subscription", tech:["HTML","CSS","JavaScript"]},
-    {name:"H Scroll Slider", tech:["HTML","CSS","JavaScript","jQuery"]},
-    {name:"Image Search", tech:["HTML","CSS","JavaScript","API"]},
-    {name:"Launching Soon", tech:["HTML","CSS","Bootstrap"]},
-    {name:"Mini Calendar", tech:["HTML","CSS","JavaScript"]},
-    {name:"Music Player", tech:["HTML","CSS","JavaScript","Audio API"]},
-    {name:"Notes App", tech:["HTML","CSS","JavaScript","LocalStorage"]},
-    {name:"Password", tech:["HTML","CSS","JavaScript"]},
-    {name:"Password Generator", tech:["HTML","CSS","JavaScript"]},
-    {name:"Popup", tech:["HTML","CSS","JavaScript"]},
-    {name:"Product Page", tech:["HTML","CSS","Bootstrap"]},
-    {name:"Progress Bar", tech:["HTML","CSS","JavaScript"]},
-    {name:"QR Code", tech:["HTML","CSS","JavaScript","API"]},
-    {name:"Quiz App", tech:["HTML","CSS","JavaScript"]},
-    {name:"Select Menu", tech:["HTML","CSS","JavaScript"]},
-    {name:"Stopwatch", tech:["HTML","CSS","JavaScript"]},
-    {name:"Text to Speech", tech:["HTML","CSS","JavaScript","Speech API"]},
-    {name:"Toast Notification", tech:["HTML","CSS","JavaScript"]},
-    {name:"To Do List", tech:["HTML","CSS","JavaScript"]},
-    {name:"Toggle Password", tech:["HTML","CSS","JavaScript"]},
-    {name:"Transparent Background", tech:["HTML","CSS"]},
-    {name:"Validation & Weather App", tech:["HTML","CSS","JavaScript","API"]}
-  ];
+const projects = [
+  {name:"Age Calculator", img:"https://via.placeholder.com/200x200.png?text=Age+Calculator", github:"https://github.com/Tarunpatidar420/Agecalculator", demo:"https://tarunpatidar420.github.io/Agecalculator/", tech:["HTML","CSS","JavaScript"]},
+  {name:"Calculator", img:"https://via.placeholder.com/200x200.png?text=Calculator", github:"https://github.com/Tarunpatidar420/calculator", demo:"https://tarunpatidar420.github.io/calculator/", tech:["HTML","CSS","JavaScript"]},
+  {name:"Crypto Webpage", img:"https://via.placeholder.com/200x200.png?text=Crypto+Webpage", github:"https://github.com/Tarunpatidar420/Crypto-Webpage", demo:"https://tarunpatidar420.github.io/Crypto-Webpage/", tech:["HTML","CSS","API","Bootstrap"]},
+  {name:"Digital Clock", img:"https://via.placeholder.com/200x200.png?text=Digital+Clock", github:"https://github.com/Tarunpatidar420/digitalclock", demo:"https://tarunpatidar420.github.io/digitalclock/", tech:["HTML","CSS","JavaScript"]},
+  {name:"Drag & Drop", img:"https://via.placeholder.com/200x200.png?text=Drag+%26+Drop", github:"https://github.com/Tarunpatidar420/drag-drop", demo:"https://tarunpatidar420.github.io/drag-drop/", tech:["HTML5 DragDrop API","JavaScript"]},
+  {name:"Notes App", img:"https://via.placeholder.com/200x200.png?text=Notes+App", github:"https://github.com/Tarunpatidar420/noted", demo:"https://tarunpatidar420.github.io/noted/", tech:["HTML","CSS","JavaScript","LocalStorage"]},
+  {name:"Password Generator", img:"https://via.placeholder.com/200x200.png?text=Password+Generator", github:"https://github.com/Tarunpatidar420/passwordgenerator", demo:"https://tarunpatidar420.github.io/passwordgenerator/", tech:["HTML","CSS","JavaScript"]},
+  {name:"QR Code", img:"https://via.placeholder.com/200x200.png?text=QR+Code", github:"https://github.com/Tarunpatidar420/Qrcode", demo:"https://tarunpatidar420.github.io/Qrcode/", tech:["HTML","CSS","JavaScript","API"]},
+  {name:"Quiz App", img:"https://via.placeholder.com/200x200.png?text=Quiz+App", github:"https://github.com/Tarunpatidar420/quizapp", demo:"https://tarunpatidar420.github.io/quizapp/", tech:["HTML","CSS","JavaScript"]},
+  {name:"Text to Speech", img:"https://via.placeholder.com/200x200.png?text=Text+to+Speech", github:"https://github.com/Tarunpatidar420/text_to_speech", demo:"https://tarunpatidar420.github.io/text_to_speech/", tech:["HTML","CSS","JavaScript","Speech API"]},
+  {name:"To Do List", img:"https://via.placeholder.com/200x200.png?text=To+Do+List", github:"https://github.com/Tarunpatidar420/to_do_list", demo:"https://tarunpatidar420.github.io/to_do_list/", tech:["HTML","CSS","JavaScript"]},
+  {name:"Weather App", img:"https://via.placeholder.com/200x200.png?text=Weather+App", github:"https://github.com/Tarunpatidar420/weatherapp", demo:"https://tarunpatidar420.github.io/weatherapp/", tech:["HTML","CSS","JavaScript","API"]}
+];
 
-  // Generate cards
-  function renderProjects(filter="") {
-    const container = $("#projectContainer");
-    container.html("");
-    projects.forEach((proj) => {
-      if(proj.name.toLowerCase().includes(filter.toLowerCase())) {
-        container.append(`
-          <div class="col-md-3">
-            <div class="project-card text-center">
-              <img src="https://via.placeholder.com/200x200.png?text=${proj.name.replace(/\\s+/g,'+')}" alt="${proj.name}">
-              <h5>${proj.name}</h5>
-              <p class="small">Professional project: ${proj.name}, designed with clean UI/UX to impress recruiters.</p>
-              <div class="d-flex justify-content-center gap-2 flex-wrap mt-2">
-                <a href="https://github.com/tarunpatidar2805/${proj.name.replace(/\\s+/g,'-').toLowerCase()}" target="_blank" class="btn-inner">GitHub</a>
-                <a href="#" target="_blank" class="btn-inner bg-success">Demo</a>
-                <button class="btn-inner" style="background:#6f42c1" onclick="showTech('${proj.name}')">View Tech</button>
-              </div>
+function renderProjects(filter="") {
+  const container = $("#projectContainer");
+  container.html("");
+  projects.forEach((proj) => {
+    if(proj.name.toLowerCase().includes(filter.toLowerCase())) {
+      container.append(`
+        <div class="col-md-3">
+          <div class="project-card text-center">
+            <img src="${proj.img}" alt="${proj.name}">
+            <h5>${proj.name}</h5>
+            <p class="small">Professional project: ${proj.name}, designed with clean UI/UX to impress recruiters.</p>
+            <div class="d-flex justify-content-center gap-2 flex-wrap mt-2">
+              <a href="${proj.github}" target="_blank" class="btn-inner">GitHub</a>
+              <a href="${proj.demo}" target="_blank" class="btn-inner bg-success">Demo</a>
+              <button class="btn-inner" style="background:#6f42c1" onclick="showTech('${proj.name}')">View Tech</button>
             </div>
           </div>
-        `);
-      }
-    });
-  }
-  renderProjects();
-
-  // Search filter
-  $("#searchBox").on("keyup", function(){
-    renderProjects(this.value);
+        </div>
+      `);
+    }
   });
+}
+renderProjects();
 
-  // Background toggle
-  const bgs = [
-    "linear-gradient(to right, #ffffff, #f9f9f9)",
-    "linear-gradient(to right, #87cefa, #e0f7fa)",
-    "linear-gradient(to right, #fdfbfb, #ebedee)"
-  ];
-  let bgIndex = 0;
-  $("#bgToggle").on("click", function(){
-    bgIndex = (bgIndex+1)%bgs.length;
-    $("body").css("background", bgs[bgIndex]);
-  });
+// search filter
+$("#searchBox").on("keyup", function(){ renderProjects(this.value); });
 
-  // Show Tech modal
-  function showTech(name){
-    const proj = projects.find(p=>p.name===name);
-    $("#techTitle").text(name+" Technologies");
-    $("#techList").html(proj.tech.map(t=>`<li>💡 ${t}</li>`).join(''));
-    $("#techModal").fadeIn();
-  }
+// background toggle
+const bgs = [
+  "linear-gradient(to right, #ffffff, #f9f9f9)",
+  "linear-gradient(to right, #87cefa, #e0f7fa)",
+  "linear-gradient(to right, #fdfbfb, #ebedee)"
+];
+let bgIndex = 0;
+$("#bgToggle").on("click", function(){
+  bgIndex = (bgIndex+1)%bgs.length;
+  $("body").css("background", bgs[bgIndex]);
+});
+
+// show tech modal
+function showTech(name){
+  const proj = projects.find(p=>p.name===name);
+  $("#techTitle").text(name+" Technologies");
+  $("#techList").html(proj.tech.map(t=>`<li>💡 ${t}</li>`).join(''));
+  $("#techModal").fadeIn();
+}
 </script>
 </body>
 </html>

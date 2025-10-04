@@ -31,8 +31,8 @@
       border-radius: 15px;
       padding: 15px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-      width: 200px;
-      height: 350px;
+      width: 230px;
+      height: 380px;
       margin: auto;
       transition: transform 0.3s, box-shadow 0.3s;
       animation: cardBounce 3s infinite;
@@ -63,8 +63,6 @@
       50% {transform: translateY(-5px);}
     }
     .search-bar { max-width: 400px; margin: 0 auto 25px; }
-
-    /* Tech Modal */
     .tech-modal {
       position: fixed;
       top:0; left:0;
@@ -114,7 +112,6 @@
   <div class="container py-5">
     <h2 class="section-heading">MERN & API Projects — Code with Tarun Patidar</h2>
 
-    <!-- Background toggle + search -->
     <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
       <input type="text" id="searchBox" class="form-control search-bar" placeholder="Search MERN projects...">
       <button id="bgToggle" class="btn btn-success">Toggle Background</button>
@@ -132,84 +129,92 @@
   </div>
 
 <script>
-  // MERN Projects data
-  const projects = [
-    {
-      name:"VehicalWala",
-      desc:"Full-stack vehicle rental platform: cars (luxury), tractors, bikes & machinery.",
-      tech:["MongoDB","Express.js","React","Node.js","JWT","Stripe API","Responsive UI","Admin Dashboard"]
-    },
-    {
-      name:"Quick AI",
-      desc:"AI suite: article/blog writer, image gen, background remover, resume analyser.",
-      tech:["MERN Stack","OpenAI API","Image Processing","Cloud Storage","Queue Jobs"]
-    },
-    {
-      name:"Quick GPT",
-      desc:"Chat assistant like ChatGPT with streaming and role-based access.",
-      tech:["React Chat UI","Socket.io","Node APIs","MongoDB","Rate Limiting","Auth & Roles"]
-    },
-    {
-      name:"Learning Management System",
-      desc:"Complete online learning platform with courses, video, quizzes & instructor dashboard.",
-      tech:["MERN Fullstack","Video Streaming","Payments","Role-based Access","Analytics"]
-    },
-    {
-      name:"Movie Ticket Booking",
-      desc:"Movie ticket booking app with seat map, cancel, invoices & admin dashboard.",
-      tech:["React","Express APIs","MongoDB","Socket.io","Payment Gateway"]
-    }
-  ];
+const projects = [
+  {
+    name:"VehicalWala",
+    img:"https://via.placeholder.com/200x200.png?text=VehicalWala",
+    github:"https://github.com/tarunpatidar2805/VehicalWala",
+    demo:"https://vehicalwalamain.onrender.com",
+    desc:"Full-stack vehicle rental platform for cars, tractors, and machinery.",
+    tech:["MongoDB","Express.js","React","Node.js","JWT","Stripe API","Admin Dashboard"]
+  },
+  {
+    name:"Quick AI",
+    img:"https://via.placeholder.com/200x200.png?text=Quick+AI",
+    github:"https://github.com/tarunpatidar2805/QuickAi",
+    demo:"https://quickaimain.onrender.com",
+    desc:"AI-based app: article/blog writer, image generator & background remover.",
+    tech:["MERN Stack","OpenAI API","Cloud Storage","Image Processing","Node.js"]
+  },
+  {
+    name:"Quick GPT",
+    img:"https://via.placeholder.com/200x200.png?text=Quick+GPT",
+    github:"https://github.com/tarunpatidar2805/QuickGpt",
+    demo:"https://quickgptmain.onrender.com",
+    desc:"Chat assistant like ChatGPT with roles, tokens, and streaming.",
+    tech:["React","Node","Socket.io","MongoDB","Auth & Roles","Rate Limiting"]
+  },
+  {
+    name:"Learning Management System",
+    img:"https://via.placeholder.com/200x200.png?text=LMS",
+    github:"https://github.com/tarunpatidar2805/lms-full-stack",
+    demo:"https://lmsmain-lhgi.onrender.com",
+    desc:"Online course platform with video streaming, payments, analytics.",
+    tech:["React","Node.js","MongoDB","Payments","Role-based Access","Cloudinary"]
+  },
+  {
+    name:"Movie Ticket Booking",
+    img:"https://via.placeholder.com/200x200.png?text=Movie+Booking",
+    github:"https://github.com/Tarunpatidar420/movieticketbooking",
+    demo:"https://movieticketbookingmain.onrender.com",
+    desc:"Movie booking system with seat map, payments & admin dashboard.",
+    tech:["React","Express","MongoDB","Socket.io","Payment Gateway"]
+  }
+];
 
-  // Generate cards
-  function renderProjects(filter="") {
-    const container = $("#projectContainer");
-    container.html("");
-    projects.forEach((proj) => {
-      if(proj.name.toLowerCase().includes(filter.toLowerCase())) {
-        container.append(`
-          <div class="col-md-3">
-            <div class="project-card text-center">
-              <img src="https://via.placeholder.com/200x200.png?text=${proj.name.replace(/\s+/g,'+')}" alt="${proj.name}">
-              <h5>${proj.name}</h5>
-              <p class="small">${proj.desc}</p>
-              <div class="d-flex justify-content-center gap-2 flex-wrap mt-2">
-                <a href="https://github.com/tarunpatidar2805/${proj.name.replace(/\s+/g,'-').toLowerCase()}" target="_blank" class="btn-inner">GitHub</a>
-                <a href="#" target="_blank" class="btn-inner bg-success">Demo</a>
-                <button class="btn-inner" style="background:#6f42c1" onclick="showTech('${proj.name}')">View Tech</button>
-              </div>
+function renderProjects(filter="") {
+  const container = $("#projectContainer");
+  container.html("");
+  projects.forEach((proj) => {
+    if(proj.name.toLowerCase().includes(filter.toLowerCase())) {
+      container.append(`
+        <div class="col-md-3">
+          <div class="project-card text-center">
+            <img src="${proj.img}" alt="${proj.name}">
+            <h5>${proj.name}</h5>
+            <p class="small">${proj.desc}</p>
+            <div class="d-flex justify-content-center gap-2 flex-wrap mt-2">
+              <a href="${proj.github}" target="_blank" class="btn-inner">GitHub</a>
+              <a href="${proj.demo}" target="_blank" class="btn-inner bg-success">Demo</a>
+              <button class="btn-inner" style="background:#6f42c1" onclick="showTech('${proj.name}')">View Tech</button>
             </div>
           </div>
-        `);
-      }
-    });
-  }
-  renderProjects();
-
-  // Search filter
-  $("#searchBox").on("keyup", function(){
-    renderProjects(this.value);
+        </div>
+      `);
+    }
   });
+}
+renderProjects();
 
-  // Background toggle
-  const bgs = [
-    "linear-gradient(to right, #ffffff, #f9f9f9)",
-    "linear-gradient(to right, #87cefa, #e0f7fa)",
-    "linear-gradient(to right, #fdfbfb, #ebedee)"
-  ];
-  let bgIndex = 0;
-  $("#bgToggle").on("click", function(){
-    bgIndex = (bgIndex+1)%bgs.length;
-    $("body").css("background", bgs[bgIndex]);
-  });
+$("#searchBox").on("keyup", function(){ renderProjects(this.value); });
 
-  // Show Tech modal
-  function showTech(name){
-    const proj = projects.find(p=>p.name===name);
-    $("#techTitle").text(name+" Technologies");
-    $("#techList").html(proj.tech.map(t=>`<li>💡 ${t}</li>`).join(''));
-    $("#techModal").fadeIn();
-  }
+const bgs = [
+  "linear-gradient(to right, #ffffff, #f9f9f9)",
+  "linear-gradient(to right, #87cefa, #e0f7fa)",
+  "linear-gradient(to right, #fdfbfb, #ebedee)"
+];
+let bgIndex = 0;
+$("#bgToggle").on("click", function(){
+  bgIndex = (bgIndex+1)%bgs.length;
+  $("body").css("background", bgs[bgIndex]);
+});
+
+function showTech(name){
+  const proj = projects.find(p=>p.name===name);
+  $("#techTitle").text(name+" Technologies");
+  $("#techList").html(proj.tech.map(t=>`<li>💡 ${t}</li>`).join(''));
+  $("#techModal").fadeIn();
+}
 </script>
 </body>
 </html>
