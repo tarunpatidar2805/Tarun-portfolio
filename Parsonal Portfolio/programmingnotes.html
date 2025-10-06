@@ -1,209 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Programming Notes - Code with Tarun Patidar</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #f8fbff, #f0f9ff);
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Code with Tarun Patidar — Programming Notes Dashboard</title>
 
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: bounce 2s infinite;
-      margin-bottom: 10px;
-    }
+<!-- Bootstrap & FontAwesome -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+<style>
+:root{
+  --accent1:#ff8c00;
+  --accent2:#ff0080;
+  --muted:#65748b;
+  --bg:linear-gradient(120deg,#fdfbfb,#ebedee);
+  --white:#fff;
+}
+body{
+  font-family:"Poppins",sans-serif;
+  margin:0;
+  background:var(--bg);
+  color:#1f2937;
+  min-height:100vh;
+  overflow-x:hidden;
+}
 
-    p.subtext {
-      color: #334155;
-      font-size: 1rem;
-      max-width: 650px;
-      margin: 0 auto 30px;
-    }
+/* --- Top Bar --- */
+.topbar{
+  height:70px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 16px;
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  background:rgba(255,255,255,0.95);
+  z-index:1001;
+  position:sticky;
+  top:0;
+}
+.brand-title{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.brand-title h1{
+  font-size:17px;
+  margin:0;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--accent2),var(--accent1));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.brand-sub{font-size:12px;color:var(--muted);}
+.toggle-btn{
+  background:none;
+  border:none;
+  font-size:22px;
+  color:#1f2937;
+  cursor:pointer;
+}
 
-    .note-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      justify-content: center;
-    }
+/* --- Layout --- */
+.app-wrap{
+  display:flex;
+  height:calc(100vh - 70px);
+  overflow:hidden;
+}
+.sidebar{
+  width:250px;
+  background:var(--white);
+  border-right:1px solid rgba(0,0,0,0.05);
+  padding:18px;
+  transition:transform .3s ease;
+  z-index:1002;
+}
+.sidebar.hidden{
+  transform:translateX(-100%);
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+.logo .icon{
+  width:42px;height:42px;border-radius:10px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent1));
+  color:white;display:flex;align-items:center;justify-content:center;
+}
+.nav-item{
+  display:flex;align-items:center;gap:10px;padding:10px;
+  border-radius:10px;cursor:pointer;margin-bottom:6px;
+  transition:.2s;
+}
+.nav-item:hover,.nav-item.active{background:#f9fafb;box-shadow:0 3px 12px rgba(0,0,0,0.05);}
+.nav-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;}
+.small-muted{font-size:13px;color:#6b7280}
 
-    .note-box {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      padding: 25px;
-      text-align: center;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
+/* Icon colors */
+.c-icon{background:linear-gradient(90deg,#fb923c,#f97316);}
+.cpp-icon{background:linear-gradient(90deg,#06b6d4,#0ea5e9);}
+.java-icon{background:linear-gradient(90deg,#7c3aed,#a78bfa);}
+.py-icon{background:linear-gradient(90deg,#06b6d4,#60a5fa);}
+.js-icon{background:linear-gradient(90deg,#f59e0b,#f97316);}
+.r-icon{background:linear-gradient(90deg,#ef4444,#fb7185);}
 
-    .note-box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-    }
+/* --- Main Content --- */
+.content{
+  flex:1;
+  padding:20px;
+  overflow:auto;
+  background:#f8fafc;
+}
+.panel{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+  padding:16px;
+}
+.drag-area{
+  border:2px dashed rgba(14,165,233,0.25);
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  color:#0d6efd;
+  background:#f9fafb;
+  margin-bottom:15px;
+}
+.drag-area.dragover{background:#e0f2fe;border-color:#0284c7;}
+.list-group-item{border-radius:10px;margin-bottom:8px;}
+.file-name{font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.btn-rounded{border-radius:10px;padding:6px 10px;}
+.admin-badge{background:linear-gradient(90deg,#22c55e,#16a34a);color:white;padding:6px 12px;border-radius:10px;font-size:13px;}
 
-    .note-title {
-      font-weight: 700;
-      color: #1e293b;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
+/* Overlay (no blur) */
+.overlay{
+  display:none;
+  position:fixed;
+  top:70px;
+  left:0;
+  width:100%;
+  height:calc(100% - 70px);
+  background:rgba(255,255,255,0.2);
+  z-index:1000;
+}
+.overlay.show{display:block;}
 
-    .note-desc {
-      font-size: 0.9rem;
-      color: #475569;
-      margin-bottom: 15px;
-    }
-
-    .btn-custom {
-      border: none;
-      color: white;
-      font-weight: 600;
-      border-radius: 12px;
-      padding: 10px 15px;
-      margin: 5px;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-
-    .btn-view {
-      background: linear-gradient(45deg, #2196F3, #00BCD4);
-    }
-
-    .btn-download {
-      background: linear-gradient(45deg, #22c55e, #16a34a);
-    }
-
-    .btn-print {
-      background: linear-gradient(45deg, #f97316, #fb923c);
-    }
-
-    .btn-custom:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 1.8rem; }
-      .note-box { padding: 18px; }
-      .btn-custom { padding: 8px 12px; font-size: 0.85rem; }
-    }
-
-    /* Modal custom look */
-    .modal-content {
-      border-radius: 15px;
-      overflow: hidden;
-    }
-
-    iframe {
-      width: 100%;
-      height: 75vh;
-      border: none;
-    }
-  </style>
+/* --- Responsive --- */
+@media(max-width:900px){
+  .app-wrap{flex-direction:column;}
+  .sidebar{position:fixed;top:70px;left:0;height:calc(100% - 70px);}
+  .sidebar.hidden{transform:translateX(-100%);}
+  .content{padding:16px;}
+  .list-group-item{flex-wrap:wrap;}
+  .file-name{max-width:100%;}
+}
+</style>
 </head>
 <body>
 
-  <h1>Welcome to Code with Tarun Patidar Web App</h1>
-  <p class="subtext">
-    🚀 Explore 300+ page programming notes. Learn coding, logic, and real-world development with easy-to-read PDFs.
-  </p>
-
-  <div class="note-container">
-    <div class="note-box">
-      <div class="note-title">C & C++ Notes</div>
-      <div class="note-desc">Strong fundamentals and logic building in programming.</div>
-      <button class="btn-custom btn-view" onclick="viewPDF('https://drive.google.com/file/d/1x0xYOUR_DRIVE_ID/preview')">View</button>
-      <a href="https://drive.google.com/uc?export=download&id=1x0xYOUR_DRIVE_ID" class="btn-custom btn-download" target="_blank">Download</a>
-      <button class="btn-custom btn-print" onclick="printPDF('https://drive.google.com/file/d/1x0xYOUR_DRIVE_ID/preview')">Print</button>
-    </div>
-
-    <div class="note-box">
-      <div class="note-title">Java Notes</div>
-      <div class="note-desc">Complete Java, OOPs, Collections & DSA essentials.</div>
-      <button class="btn-custom btn-view" onclick="viewPDF('https://drive.google.com/file/d/2x0xYOUR_DRIVE_ID/preview')">View</button>
-      <a href="https://drive.google.com/uc?export=download&id=2x0xYOUR_DRIVE_ID" class="btn-custom btn-download" target="_blank">Download</a>
-      <button class="btn-custom btn-print" onclick="printPDF('https://drive.google.com/file/d/2x0xYOUR_DRIVE_ID/preview')">Print</button>
-    </div>
-
-    <div class="note-box">
-      <div class="note-title">JavaScript Notes</div>
-      <div class="note-desc">Learn DOM, ES6+, async, and real-world JS tricks.</div>
-      <button class="btn-custom btn-view" onclick="viewPDF('https://drive.google.com/file/d/3x0xYOUR_DRIVE_ID/preview')">View</button>
-      <a href="https://drive.google.com/uc?export=download&id=3x0xYOUR_DRIVE_ID" class="btn-custom btn-download" target="_blank">Download</a>
-      <button class="btn-custom btn-print" onclick="printPDF('https://drive.google.com/file/d/3x0xYOUR_DRIVE_ID/preview')">Print</button>
-    </div>
-
-    <div class="note-box">
-      <div class="note-title">Python Notes</div>
-      <div class="note-desc">Everything from basics to automation and AI intro.</div>
-      <button class="btn-custom btn-view" onclick="viewPDF('https://drive.google.com/file/d/4x0xYOUR_DRIVE_ID/preview')">View</button>
-      <a href="https://drive.google.com/uc?export=download&id=4x0xYOUR_DRIVE_ID" class="btn-custom btn-download" target="_blank">Download</a>
-      <button class="btn-custom btn-print" onclick="printPDF('https://drive.google.com/file/d/4x0xYOUR_DRIVE_ID/preview')">Print</button>
-    </div>
-
-    <div class="note-box">
-      <div class="note-title">HTML & CSS Notes</div>
-      <div class="note-desc">Frontend structure, styling & responsive UI design.</div>
-      <button class="btn-custom btn-view" onclick="viewPDF('https://drive.google.com/file/d/5x0xYOUR_DRIVE_ID/preview')">View</button>
-      <a href="https://drive.google.com/uc?export=download&id=5x0xYOUR_DRIVE_ID" class="btn-custom btn-download" target="_blank">Download</a>
-      <button class="btn-custom btn-print" onclick="printPDF('https://drive.google.com/file/d/5x0xYOUR_DRIVE_ID/preview')">Print</button>
-    </div>
-
-    <div class="note-box">
-      <div class="note-title">Full Stack Notes</div>
-      <div class="note-desc">Complete MERN stack roadmap & real projects.</div>
-      <button class="btn-custom btn-view" onclick="viewPDF('https://drive.google.com/file/d/6x0xYOUR_DRIVE_ID/preview')">View</button>
-      <a href="https://drive.google.com/uc?export=download&id=6x0xYOUR_DRIVE_ID" class="btn-custom btn-download" target="_blank">Download</a>
-      <button class="btn-custom btn-print" onclick="printPDF('https://drive.google.com/file/d/6x0xYOUR_DRIVE_ID/preview')">Print</button>
+<!-- Header -->
+<div class="topbar">
+  <button id="menuBtn" class="toggle-btn"><i class="fa fa-bars"></i></button>
+  <div class="brand-title">
+    <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#ff0080,#ff8c00);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">CT</div>
+    <div>
+      <h1>Programming Notes</h1>
+      <div class="brand-sub">Upload, View & Manage PDFs</div>
     </div>
   </div>
+  <div class="d-flex align-items-center gap-2">
+    <button id="loginBtn" class="btn btn-primary btn-sm"><i class="fa fa-key me-1"></i>Login</button>
+    <div id="adminBadge" class="admin-badge d-none"><i class="fa fa-lock me-1"></i>Admin</div>
+    <button id="logoutBtn" class="btn btn-danger btn-sm d-none"><i class="fa fa-sign-out-alt"></i>Logout</button>
+  </div>
+</div>
 
-  <!-- Modal for PDF View -->
-  <div class="modal fade" id="pdfModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">📘 PDF Preview</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <iframe id="pdfFrame"></iframe>
-        </div>
+<div class="app-wrap">
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <div class="icon"><i class="fa fa-code"></i></div>
+      <div><div style="font-weight:800">Notes Menu</div><div class="small-muted">Tarun Patidar</div></div>
+    </div>
+    <div id="navList"></div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main class="content">
+    <div id="mainContent"></div>
+  </main>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <h5 class="text-center mb-3">Admin Login</h5>
+      <input id="email" class="form-control mb-2" placeholder="Email">
+      <input id="password" type="password" class="form-control mb-3" placeholder="Password">
+      <div class="text-center">
+        <button id="loginSubmit" class="btn btn-success px-4">Login</button>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const pdfFrame = document.getElementById("pdfFrame");
-    const modal = new bootstrap.Modal(document.getElementById("pdfModal"));
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    function viewPDF(url) {
-      pdfFrame.src = url;
-      modal.show();
+<script>
+const ADMIN_EMAIL="tarunpatidarrupariya@gmail.com";
+const ADMIN_PASS="patidar2805";
+const STORAGE_KEY="tarun_programming_notes_v1";
+let isAdmin=false;
+let data=JSON.parse(localStorage.getItem(STORAGE_KEY))||{};
+const topics=[
+  {id:"c",label:"C Programming",icon:"fa-terminal",cls:"c-icon"},
+  {id:"cpp",label:"C++ Programming",icon:"fa-code",cls:"cpp-icon"},
+  {id:"java",label:"Java Programming",icon:"fa-coffee",cls:"java-icon"},
+  {id:"python",label:"Python Programming",icon:"fa-python",cls:"py-icon"},
+  {id:"javascript",label:"JavaScript",icon:"fa-js-square",cls:"js-icon"},
+  {id:"rprog",label:"R Programming",icon:"fa-chart-line",cls:"r-icon"}
+];
+topics.forEach(t=>{if(!Array.isArray(data[t.id]))data[t.id]=[];});
+let current=topics[0].id;
+
+function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+function renderSidebar(){
+  $("#navList").empty();
+  topics.forEach(t=>{
+    const count=data[t.id].length;
+    const item=$(`
+      <div class="nav-item" data-id="${t.id}">
+        <div class="nav-icon ${t.cls}"><i class="fa ${t.icon}"></i></div>
+        <div><div>${t.label}</div><div class="small-muted">${count} PDFs</div></div>
+      </div>`);
+    item.on("click",()=>{$(".nav-item").removeClass("active");item.addClass("active");openTopic(t.id);toggleSidebar(false);});
+    $("#navList").append(item);
+  });
+  $(`[data-id=${current}]`).addClass("active");
+}
+function openTopic(id){
+  current=id;
+  const topic=topics.find(t=>t.id===id);
+  $("#mainContent").html(`
+    <div class="panel mx-auto" style="max-width:700px;">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+        <div>
+          <h5>${topic.label}</h5>
+          <div class="small-muted">Manage notes for ${topic.label}</div>
+        </div>
+        ${isAdmin?`<button id="uploadBtn" class="btn btn-sm btn-primary"><i class="fa fa-upload me-1"></i>Upload</button>`:""}
+      </div>
+      ${isAdmin?`<div class="drag-area" id="dragArea"><i class="fa fa-cloud-upload-alt fa-2x"></i><p>Drag & Drop PDFs here</p></div>`:""}
+      <ul class="list-group" id="fileList"></ul>
+    </div>
+  `);
+  renderFiles();
+  if(isAdmin){
+    $("#uploadBtn").on("click",()=>createInput());
+    const drag=document.getElementById("dragArea");
+    if(drag){
+      ["dragover","dragleave","drop"].forEach(ev=>{
+        drag.addEventListener(ev,e=>{
+          e.preventDefault();
+          drag.classList.toggle("dragover",ev==="dragover");
+          if(ev==="drop"){drag.classList.remove("dragover");handleFiles(e.dataTransfer.files);}
+        });
+      });
     }
+  }
+}
+function createInput(){
+  const i=document.createElement("input");
+  i.type="file";i.accept="application/pdf";i.multiple=true;
+  i.onchange=e=>handleFiles(e.target.files);
+  i.click();
+}
+function renderFiles(){
+  const list=$("#fileList");
+  list.empty();
+  const files=data[current];
+  if(!files.length)return list.append('<li class="list-group-item text-center text-muted">No PDFs found.</li>');
+  files.forEach(f=>{
+    const li=$(`
+      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <span class="file-name">${f.name}</span>
+        <div class="mt-2 mt-sm-0">
+          <button class="btn btn-sm btn-primary me-1 view"><i class="fa fa-eye"></i></button>
+          <button class="btn btn-sm btn-success me-1 download"><i class="fa fa-download"></i></button>
+          ${isAdmin?'<button class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>':""}
+        </div>
+      </li>`);
+    li.find(".view").on("click",()=>window.open(f.url,"_blank"));
+    li.find(".download").on("click",()=>{
+      const a=document.createElement("a");a.href=f.url;a.download=f.name;a.click();
+    });
+    li.find(".delete").on("click",()=>{if(confirm("Delete this PDF?")){data[current]=data[current].filter(x=>x.url!==f.url);saveData();renderFiles();renderSidebar();}});
+    list.append(li);
+  });
+}
+function handleFiles(files){
+  if(!files.length)return;
+  Array.from(files).forEach(file=>{
+    if(file.type!=="application/pdf")return alert(file.name+" is not a PDF!");
+    const url=URL.createObjectURL(file);
+    data[current].push({name:file.name,url});
+  });
+  saveData();renderFiles();renderSidebar();
+  alert("✅ Upload complete!");
+}
 
-    function printPDF(url) {
-      const win = window.open(url, "_blank");
-      setTimeout(() => alert("Use browser’s Print → Save as PDF."), 1200);
-    }
-  </script>
+/* --- Admin login/logout --- */
+$("#loginBtn").on("click",()=>new bootstrap.Modal(document.getElementById("loginModal")).show());
+$("#loginSubmit").on("click",()=>{
+  if($("#email").val().trim()===ADMIN_EMAIL&&$("#password").val().trim()===ADMIN_PASS){
+    isAdmin=true;$("#loginModal").modal("hide");
+    $("#loginBtn").hide();$("#logoutBtn").removeClass("d-none");
+    $("#adminBadge").removeClass("d-none");
+    openTopic(current);
+    alert("✅ Admin Mode Activated");
+  }else alert("❌ Invalid credentials!");
+});
+$("#logoutBtn").on("click",()=>{
+  isAdmin=false;
+  $("#logoutBtn").addClass("d-none");
+  $("#loginBtn").show();
+  $("#adminBadge").addClass("d-none");
+  openTopic(current);
+  alert("🚪 Logged out successfully!");
+});
 
+/* --- Sidebar toggle (no blur overlay) --- */
+function toggleSidebar(force){
+  const sidebar=$("#sidebar");
+  const overlay=$("#overlay");
+  if(force===true){sidebar.removeClass("hidden");overlay.addClass("show");}
+  else if(force===false){sidebar.addClass("hidden");overlay.removeClass("show");}
+  else{
+    sidebar.toggleClass("hidden");
+    overlay.toggleClass("show",!sidebar.hasClass("hidden"));
+  }
+}
+$("#menuBtn").on("click",()=>toggleSidebar());
+$("#overlay").on("click",()=>toggleSidebar(false));
+
+/* --- Auto open on laptop, closed on mobile --- */
+function checkWidth(){
+  if(window.innerWidth>900)toggleSidebar(true);
+  else toggleSidebar(false);
+}
+window.addEventListener("resize",checkWidth);
+checkWidth();
+
+renderSidebar();openTopic(current);
+</script>
 </body>
 </html>

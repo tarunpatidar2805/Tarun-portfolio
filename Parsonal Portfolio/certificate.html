@@ -1,151 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificates - Tarun Patidar</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Certificates Dashboard — Code with Tarun Patidar</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Bootstrap & FontAwesome -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
-  <style>
-    body { background: #f8f9fa; font-family: 'Poppins', sans-serif; }
+<style>
+:root {
+  --accent1: #ff8c00;
+  --accent2: #ff0080;
+  --muted: #6b7280;
+  --bg: linear-gradient(120deg,#fdfbfb,#ebedee);
+}
 
-    /* Banner */
-    .top-banner {
-      text-align: center;
-      padding: 50px 20px;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      color: #fff;
-      margin-bottom: 40px;
-      animation: fadeInDown 1.2s ease;
-    }
-    .top-banner h1 {
-      font-size: 30px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .top-banner p {
-      font-size: 16px;
-      font-weight: 400;
-    }
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  margin: 0;
+  color: #1f2937;
+}
 
-    /* Cards */
-    .card { transition: all 0.3s ease; border-radius: 12px; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-    .card iframe { border: none; height: 220px; width: 100%; border-radius: 12px 12px 0 0; }
+/* 🔹 Header */
+.topbar {
+  height: 68px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.9);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 0 15px;
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-title h1 {
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(90deg,var(--accent2),var(--accent1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #333;
+  cursor: pointer;
+}
 
-    /* Pagination */
-    .pagination { justify-content: center; }
+/* 🔹 Sidebar */
+.app-wrap {
+  display: flex;
+  height: calc(100vh - 68px);
+  overflow: hidden;
+}
+.sidebar {
+  width: 250px;
+  background: #fff;
+  border-right: 1px solid rgba(0,0,0,0.05);
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  scrollbar-width: thin;
+}
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,var(--accent2),var(--accent1));
+  border-radius: 10px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.logo .icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#ff0080,#ff8c00);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.nav-item:hover, .nav-item.active {
+  background: #f9fafb;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.nav-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.ic-tech { background: linear-gradient(90deg,#3b82f6,#06b6d4); }
+.ic-nontech { background: linear-gradient(90deg,#f97316,#fb923c); }
 
-    /* Animations */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+/* 🔹 Main Content */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #f9fafb;
+}
+.panel {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  padding: 18px;
+  animation: fadeIn 0.4s ease;
+}
+.drag-area {
+  border: 2px dashed rgba(14,165,233,0.25);
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  color: #0d6efd;
+  background: #f9fafb;
+  margin-bottom: 15px;
+}
+.drag-area.dragover {
+  background: #e0f2fe;
+  border-color: #0284c7;
+}
+.list-group-item {
+  border-radius: 10px;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+.file-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn-rounded {
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 68px);
+  background: rgba(0,0,0,0.2);
+  z-index: 998;
+}
+.overlay.show { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🔹 Responsive */
+@media (max-width: 900px) {
+  .app-wrap { flex-direction: column; }
+  .sidebar { position: fixed; top: 68px; left: 0; height: calc(100% - 68px); z-index: 999; }
+  .content { padding: 15px; }
+}
+</style>
 </head>
 <body>
-  <!-- Top Banner -->
-  <div class="top-banner">
-    <h1>🚀 Welcome to Code with Tarun Patidar Web App</h1>
-    <p>Explore my verified <b>Certificates & Achievements</b>.  
-       Click below to view them and know more about my journey.</p>
+
+<!-- Header -->
+<div class="topbar">
+  <button id="menuBtn" class="toggle-btn"><i class="fa fa-bars"></i></button>
+  <div class="brand-title">
+    <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#ff0080,#ff8c00);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">CT</div>
+    <div>
+      <h1>Certificates Dashboard</h1>
+    </div>
   </div>
-
-  <!-- Certificates Section -->
-  <div class="container">
-    <div class="row" id="certificates-container"></div>
-
-    <!-- Pagination -->
-    <nav>
-      <ul class="pagination mt-4" id="pagination"></ul>
-    </nav>
+  <div class="d-flex align-items-center gap-2">
+    <button id="loginBtn" class="btn btn-sm btn-primary"><i class="fa fa-key me-1"></i>Login</button>
+    <button id="logoutBtn" class="btn btn-sm btn-danger d-none"><i class="fa fa-sign-out-alt me-1"></i>Logout</button>
   </div>
+</div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="app-wrap">
+  <aside class="sidebar hidden" id="sidebar">
+    <div class="logo">
+      <div class="icon"><i class="fa fa-certificate"></i></div>
+      <div><strong>Certificates</strong><div class="small text-muted">Tarun Patidar</div></div>
+    </div>
+    <div id="navList"></div>
+  </aside>
 
-  <!-- Custom Script -->
-  <script>
-    // 🏆 Certificates Data (Google Drive IDs डालो)
-    const certificates = [
-      { title: "Full-Stack Web Development", desc: "Issued by XYZ Academy - 2024", id: "1a2B3cD4EfGhIjKlMnOpQrStUvWxYz" },
-      { title: "Python Programming", desc: "Issued by ABC Institute - 2023", id: "2xYz3wQrTuVbN7pLmNoPqRsT1aBcDe" },
-      { title: "Data Structures & Algorithms", desc: "Issued by Code Academy - 2022", id: "3rStUvWxYz1a2B3cD4EfGhIjKlMnOpQ" },
-      { title: "Cloud Computing", desc: "Issued by AWS Academy - 2024", id: "4hIjKlMnOpQrStUvWxYz1a2B3cD4EfGh" },
-      { title: "Cyber Security", desc: "Issued by Cisco - 2023", id: "5MnOpQrStUvWxYz1a2B3cD4EfGhIjKlN" },
-      { title: "Machine Learning", desc: "Issued by Coursera - 2022", id: "6OpQrStUvWxYz1a2B3cD4EfGhIjKlMnN" },
-      { title: "AI for Everyone", desc: "Issued by DeepLearning.ai - 2023", id: "7QrStUvWxYz1a2B3cD4EfGhIjKlMnOpR" },
-      { title: "Java Development", desc: "Issued by Oracle - 2024", id: "8StUvWxYz1a2B3cD4EfGhIjKlMnOpQrS" },
-      { title: "Linux Fundamentals", desc: "Issued by RedHat - 2023", id: "9UvWxYz1a2B3cD4EfGhIjKlMnOpQrStU" }
-    ];
+  <div class="overlay" id="overlay"></div>
 
-    const perPage = 6;
-    let currentPage = 1;
+  <main class="content">
+    <div id="mainContent"></div>
+  </main>
+</div>
 
-    function renderCertificates(page = 1) {
-      const start = (page - 1) * perPage;
-      const end = start + perPage;
-      const certsToShow = certificates.slice(start, end);
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <h5 class="text-center mb-3">Admin Login</h5>
+      <input id="email" class="form-control mb-2" placeholder="Email">
+      <input id="password" type="password" class="form-control mb-3" placeholder="Password">
+      <div class="text-center">
+        <button id="loginSubmit" class="btn btn-success px-4">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-      const container = document.getElementById("certificates-container");
-      container.innerHTML = "";
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-      certsToShow.forEach(cert => {
-        const previewLink = `https://drive.google.com/file/d/${cert.id}/preview`;
-        const downloadLink = `https://drive.google.com/uc?export=download&id=${cert.id}`;
+<script>
+const ADMIN_EMAIL="tarunpatidarrupariya@gmail.com";
+const ADMIN_PASS="patidar2805";
+const STORAGE_KEY="tarun_certificates_v2";
+let isAdmin=false;
+let data=JSON.parse(localStorage.getItem(STORAGE_KEY))||{};
+const topics=[
+  {id:"technical",label:"Technical Certificates",icon:"fa-laptop-code",cls:"ic-tech"},
+  {id:"nontechnical",label:"Non-Technical Certificates",icon:"fa-user-graduate",cls:"ic-nontech"}
+];
+topics.forEach(t=>{if(!Array.isArray(data[t.id]))data[t.id]=[];});
+let current=topics[0].id;
 
-        container.innerHTML += `
-          <div class="col-md-4 mb-4">
-            <div class="card shadow h-100">
-              <iframe src="${previewLink}" allow="autoplay"></iframe>
-              <div class="card-body">
-                <h5 class="card-title">${cert.title}</h5>
-                <p class="card-text">${cert.desc}</p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="${previewLink}" target="_blank" class="btn btn-sm btn-primary me-2">
-                  <i class="bi bi-eye"></i> View
-                </a>
-                <a href="${downloadLink}" class="btn btn-sm btn-success">
-                  <i class="bi bi-download"></i> Download
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-      });
+function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+function renderSidebar(){
+  $("#navList").empty();
+  topics.forEach(t=>{
+    const count=data[t.id].length;
+    const item=$(`
+      <div class="nav-item" data-id="${t.id}">
+        <div class="nav-icon ${t.cls}"><i class="fa ${t.icon}"></i></div>
+        <div><div>${t.label}</div><div class="small text-muted">${count} PDFs</div></div>
+      </div>`);
+    item.on("click",()=>{$(".nav-item").removeClass("active");item.addClass("active");openTopic(t.id);toggleSidebar(false);});
+    $("#navList").append(item);
+  });
+  $(`[data-id=${current}]`).addClass("active");
+}
 
-      renderPagination(page);
-    }
-
-    function renderPagination(page) {
-      const totalPages = Math.ceil(certificates.length / perPage);
-      const pagination = document.getElementById("pagination");
-      pagination.innerHTML = "";
-
-      for (let i = 1; i <= totalPages; i++) {
-        pagination.innerHTML += `
-          <li class="page-item ${i === page ? "active" : ""}">
-            <a class="page-link" href="#">${i}</a>
-          </li>
-        `;
-      }
-
-      document.querySelectorAll(".page-link").forEach((btn, i) => {
-        btn.addEventListener("click", (e) => {
+function openTopic(id){
+  current=id;
+  const topic=topics.find(t=>t.id===id);
+  $("#mainContent").html(`
+    <div class="panel">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+        <h5>${topic.label}</h5>
+        ${isAdmin?`<button id="uploadBtn" class="btn btn-sm btn-primary"><i class="fa fa-upload me-1"></i>Upload</button>`:""}
+      </div>
+      ${isAdmin?`<div class="drag-area" id="dragArea"><i class="fa fa-cloud-upload-alt fa-2x mb-2"></i><p>Drag & Drop your certificate PDFs here</p></div>`:""}
+      <ul class="list-group" id="fileList"></ul>
+    </div>
+  `);
+  renderFiles();
+  if(isAdmin){
+    $("#uploadBtn").on("click",()=>createInput());
+    const drag=document.getElementById("dragArea");
+    if(drag){
+      ["dragover","dragleave","drop"].forEach(ev=>{
+        drag.addEventListener(ev,e=>{
           e.preventDefault();
-          currentPage = i + 1;
-          renderCertificates(currentPage);
+          drag.classList.toggle("dragover",ev==="dragover");
+          if(ev==="drop"){drag.classList.remove("dragover");handleFiles(e.dataTransfer.files);}
         });
       });
     }
+  }
+}
 
-    // Init
-    renderCertificates(currentPage);
-  </script>
+function createInput(){
+  const input=document.createElement("input");
+  input.type="file";input.accept="application/pdf";input.multiple=true;
+  input.onchange=e=>handleFiles(e.target.files);
+  input.click();
+}
+
+function renderFiles(){
+  const list=$("#fileList");
+  list.empty();
+  const files=data[current];
+  if(!files.length)return list.append('<li class="list-group-item text-center text-muted">No certificates uploaded yet.</li>');
+  files.forEach(f=>{
+    const li=$(`
+      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <span class="file-name">${f.name}</span>
+        <div class="mt-2 mt-sm-0">
+          <button class="btn btn-sm btn-primary me-1 view"><i class="fa fa-eye"></i></button>
+          <a class="btn btn-sm btn-success me-1" href="${f.url}" download="${f.name}" target="_blank"><i class="fa fa-download"></i></a>
+          ${isAdmin?'<button class="btn btn-sm btn-danger delete"><i class="fa fa-trash"></i></button>':""}
+        </div>
+      </li>`);
+    li.find(".view").on("click",()=>window.open(f.url,"_blank"));
+    li.find(".delete").on("click",()=>{if(confirm("Delete this certificate?")){data[current]=data[current].filter(x=>x.url!==f.url);saveData();renderFiles();renderSidebar();}});
+    list.append(li);
+  });
+}
+
+function handleFiles(files){
+  if(!files.length)return;
+  Array.from(files).forEach(file=>{
+    if(file.type!=="application/pdf")return alert(file.name+" is not a PDF!");
+    const url=URL.createObjectURL(file);
+    data[current].push({name:file.name,url});
+  });
+  saveData();renderFiles();renderSidebar();
+  alert("✅ Upload complete!");
+}
+
+/* 🔒 Login System */
+$("#loginBtn").on("click",()=>new bootstrap.Modal(document.getElementById("loginModal")).show());
+$("#loginSubmit").on("click",()=>{
+  if($("#email").val().trim()===ADMIN_EMAIL&&$("#password").val().trim()===ADMIN_PASS){
+    isAdmin=true;
+    $("#loginModal").modal("hide");
+    $("#loginBtn").addClass("d-none");
+    $("#logoutBtn").removeClass("d-none");
+    openTopic(current);
+    alert("✅ Admin Mode Activated");
+  } else alert("❌ Invalid credentials!");
+});
+$("#logoutBtn").on("click",()=>{
+  isAdmin=false;
+  $("#logoutBtn").addClass("d-none");
+  $("#loginBtn").removeClass("d-none");
+  openTopic(current);
+  alert("🚪 Logged out successfully!");
+});
+
+/* 📱 Sidebar Toggle */
+function toggleSidebar(force){
+  const sidebar=$("#sidebar"),overlay=$("#overlay");
+  if(force===true){sidebar.removeClass("hidden");overlay.addClass("show");}
+  else if(force===false){sidebar.addClass("hidden");overlay.removeClass("show");}
+  else{
+    sidebar.toggleClass("hidden");
+    overlay.toggleClass("show",!sidebar.hasClass("hidden"));
+  }
+}
+$("#menuBtn").on("click",()=>toggleSidebar());
+$("#overlay").on("click",()=>toggleSidebar(false));
+
+function checkWidth(){
+  if(window.innerWidth>900)toggleSidebar(true);
+  else toggleSidebar(false);
+}
+window.addEventListener("resize",checkWidth);
+checkWidth();
+
+renderSidebar();openTopic(current);
+</script>
 </body>
 </html>

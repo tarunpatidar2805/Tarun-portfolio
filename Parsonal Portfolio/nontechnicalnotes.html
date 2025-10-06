@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Code with Tarun Patidar — DSA Notes Dashboard</title>
+<title>Code with Tarun Patidar — Non-Technical Notes Dashboard</title>
 
 <!-- Bootstrap & FontAwesome -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,6 @@
   --bg:linear-gradient(120deg,#fdfbfb,#ebedee);
   --white:#fff;
 }
-
 body{
   font-family:"Poppins",sans-serif;
   margin:0;
@@ -75,14 +74,6 @@ body{
   padding:18px;
   transition:transform .3s ease;
   z-index:1002;
-  overflow-y:auto; /* ✅ Scroll fix */
-  scrollbar-width:thin;
-  scrollbar-color:#ff8c00 transparent;
-}
-.sidebar::-webkit-scrollbar{width:6px;}
-.sidebar::-webkit-scrollbar-thumb{
-  background:linear-gradient(180deg,var(--accent2),var(--accent1));
-  border-radius:10px;
 }
 .sidebar.hidden{
   transform:translateX(-100%);
@@ -107,22 +98,11 @@ body{
 .nav-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;}
 .small-muted{font-size:13px;color:#6b7280}
 
-/* Icon Colors */
-.ic-array{background:linear-gradient(90deg,#fb923c,#f97316);}
-.ic-string{background:linear-gradient(90deg,#f59e0b,#f97316);}
-.ic-oop{background:linear-gradient(90deg,#a78bfa,#7c3aed);}
-.ic-linkedlist{background:linear-gradient(90deg,#06b6d4,#0ea5e9);}
-.ic-stack{background:linear-gradient(90deg,#f97316,#fb7185);}
-.ic-queue{background:linear-gradient(90deg,#06b6d4,#60a5fa);}
-.ic-tree{background:linear-gradient(90deg,#10b981,#34d399);}
-.ic-heap{background:linear-gradient(90deg,#ef4444,#fb7185);}
-.ic-map{background:linear-gradient(90deg,#8b5cf6,#a78bfa);}
-.ic-sorting{background:linear-gradient(90deg,#3b82f6,#06b6d4);}
-.ic-searching{background:linear-gradient(90deg,#6366f1,#8b5cf6);}
-.ic-backtracking{background:linear-gradient(90deg,#f472b6,#fb7185);}
-.ic-greedy{background:linear-gradient(90deg,#f59e0b,#f97316);}
-.ic-graph{background:linear-gradient(90deg,#06b6d4,#3b82f6);}
-.ic-dp{background:linear-gradient(90deg,#00b894,#55efc4);}
+/* Icon colors */
+.math-icon{background:linear-gradient(90deg,#fb923c,#f97316);}
+.formula-icon{background:linear-gradient(90deg,#ec4899,#f97316);}
+.apti-icon{background:linear-gradient(90deg,#06b6d4,#3b82f6);}
+.cmd-icon{background:linear-gradient(90deg,#8b5cf6,#a78bfa);}
 
 /* --- Main Content --- */
 .content{
@@ -160,7 +140,7 @@ body{
   left:0;
   width:100%;
   height:calc(100% - 70px);
-  background:rgba(0,0,0,0.3);
+  background:rgba(255,255,255,0.2);
   z-index:1000;
 }
 .overlay.show{display:block;}
@@ -182,10 +162,10 @@ body{
 <div class="topbar">
   <button id="menuBtn" class="toggle-btn"><i class="fa fa-bars"></i></button>
   <div class="brand-title">
-    <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#ff0080,#ff8c00);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">DS</div>
+    <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#ff0080,#ff8c00);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">CT</div>
     <div>
-      <h1>DSA Notes Dashboard</h1>
-      <div class="brand-sub">Upload, View & Manage DSA PDFs</div>
+      <h1>Non-Technical Notes</h1>
+      <div class="brand-sub">Upload, View & Manage PDFs</div>
     </div>
   </div>
   <div class="d-flex align-items-center gap-2">
@@ -198,8 +178,8 @@ body{
 <div class="app-wrap">
   <aside class="sidebar" id="sidebar">
     <div class="logo">
-      <div class="icon"><i class="fa fa-brain"></i></div>
-      <div><div style="font-weight:800">DSA Topics</div><div class="small-muted">Tarun Patidar</div></div>
+      <div class="icon"><i class="fa fa-book"></i></div>
+      <div><div style="font-weight:800">Notes Menu</div><div class="small-muted">Tarun Patidar</div></div>
     </div>
     <div id="navList"></div>
   </aside>
@@ -231,25 +211,14 @@ body{
 <script>
 const ADMIN_EMAIL="tarunpatidarrupariya@gmail.com";
 const ADMIN_PASS="patidar2805";
-const STORAGE_KEY="tarun_dsa_notes_v1";
+const STORAGE_KEY="tarun_nontechnical_notes_v1";
 let isAdmin=false;
 let data=JSON.parse(localStorage.getItem(STORAGE_KEY))||{};
 const topics=[
-  {id:"array",label:"Array",icon:"fa-th-large",cls:"ic-array"},
-  {id:"string",label:"String",icon:"fa-font",cls:"ic-string"},
-  {id:"oop",label:"OOPs",icon:"fa-cubes",cls:"ic-oop"},
-  {id:"linkedlist",label:"Linked List",icon:"fa-link",cls:"ic-linkedlist"},
-  {id:"stack",label:"Stack",icon:"fa-layer-group",cls:"ic-stack"},
-  {id:"queue",label:"Queue",icon:"fa-bars",cls:"ic-queue"},
-  {id:"tree",label:"Tree",icon:"fa-tree",cls:"ic-tree"},
-  {id:"heap",label:"Heap",icon:"fa-mountain",cls:"ic-heap"},
-  {id:"map",label:"Map",icon:"fa-map",cls:"ic-map"},
-  {id:"sorting",label:"Sorting",icon:"fa-sort",cls:"ic-sorting"},
-  {id:"searching",label:"Searching",icon:"fa-magnifying-glass",cls:"ic-searching"},
-  {id:"backtracking",label:"Backtracking",icon:"fa-route",cls:"ic-backtracking"},
-  {id:"greedy",label:"Greedy Algorithm",icon:"fa-bolt",cls:"ic-greedy"},
-  {id:"graph",label:"Graph",icon:"fa-network-wired",cls:"ic-graph"},
-  {id:"dp",label:"Dynamic Programming",icon:"fa-project-diagram",cls:"ic-dp"}
+  {id:"math",label:"Mathematical Notes",icon:"fa-square-root-variable",cls:"math-icon"},
+  {id:"formula",label:"Mathematical Formula",icon:"fa-book-open",cls:"formula-icon"},
+  {id:"aptitude",label:"Aptitude Notes",icon:"fa-brain",cls:"apti-icon"},
+  {id:"cmd",label:"CMD Notes",icon:"fa-terminal",cls:"cmd-icon"}
 ];
 topics.forEach(t=>{if(!Array.isArray(data[t.id]))data[t.id]=[];});
 let current=topics[0].id;
@@ -322,7 +291,9 @@ function renderFiles(){
         </div>
       </li>`);
     li.find(".view").on("click",()=>window.open(f.url,"_blank"));
-    li.find(".download").on("click",()=>{const a=document.createElement("a");a.href=f.url;a.download=f.name;a.click();});
+    li.find(".download").on("click",()=>{
+      const a=document.createElement("a");a.href=f.url;a.download=f.name;a.click();
+    });
     li.find(".delete").on("click",()=>{if(confirm("Delete this PDF?")){data[current]=data[current].filter(x=>x.url!==f.url);saveData();renderFiles();renderSidebar();}});
     list.append(li);
   });
